@@ -87,23 +87,23 @@
                         <div class="tab active-tab" id="tab-1">
                             <div class="inner-box">
                                 <h4>Sign in</h4>
-                                <form action="{{ route('login') }}" method="post" class="default-form">
+                                <form method="POST" action="{{ route('login') }}" class="default-form">
                                     @csrf
                                     <div class="form-group">
                                         <label>User name/ Email / Phone</label>
-                                        <input type="text" name="login" id="login" required="" autocomplete="login" autofocus placeholder="Enter your email/username/phone">
+                                        <input type="text" name="login" id="login" placeholder="Enter your email/username/phone">
                                     </div>
                                     
                                     <div class="form-group">
                                         <label>Password</label>
-                                        <input type="password" name="name" required="">
+                                        <input type="password" name="password" id="password" >
                                     </div>
                                     <div class="form-group message-btn">
                                         <button type="submit" class="theme-btn btn-one">Sign in</button>
                                     </div>
                                 </form>
                                 <div class="othre-text">
-                                    <p>Have not any account? <a href="signup.html">Register Now</a></p>
+                                    <p>Have not any account? <a href="{{ route('register') }}">Register Now</a></p>
                                 </div>
                             </div>
                         </div>
@@ -167,4 +167,4 @@
 </section>
 <!-- subscribe-section end -->
 
-@endsection
+@endsection 

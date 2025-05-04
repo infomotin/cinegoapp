@@ -48,7 +48,7 @@ class LoginRequest extends FormRequest
             ->first();
 
 
-
+        // dd($user);
 
         // if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
 
