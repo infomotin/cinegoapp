@@ -66,7 +66,13 @@ class AdminController extends Controller
         // $user->username = $request->input('username');
         // Save the changes
         $user->save();
-        return redirect()->back()->with('success', 'Profile updated successfully');
+        //Notification 
+        $notification = array(
+            'message' => 'Profile updated successfully',
+            'alert-type' => 'success'
+        );
+        // Redirect back with success message
+        return redirect()->back()->with($notification);
     }
 
     public function AdminLogin()
