@@ -11,6 +11,10 @@ Route::middleware(['auth', 'verified','roleMiddleware:admin'])->group(function (
     // admin.profile
     Route::get('/admin/profile', [AdminController::class, 'AdminProfile'])->name('admin.profile');
     Route::post('/admin/profile', [AdminController::class, 'AdminProfileUpdate'])->name('admin.profile.update');
+    //admin.change.password
+    Route::get('/admin/password', [AdminController::class, 'AdminChangePassword'])->name('admin.change.password');
+    // admin.change.password.submit
+    Route::post('/admin/password', [AdminController::class, 'AdminChangePasswordSubmit'])->name('admin.change.password.submit');
 });
 Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login');
 Route::post('/admin/login', [AdminController::class, 'AdminSubmit'])->name('admin.login.submit');

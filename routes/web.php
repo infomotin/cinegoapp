@@ -14,9 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -34,5 +34,6 @@ require __DIR__.'/agent/agent.php';
 require __DIR__.'/developer/developer.php';
 require __DIR__.'/client/client.php';
 require __DIR__.'/stuff/stuff.php';
+require __DIR__.'/user/user.php';
 
 

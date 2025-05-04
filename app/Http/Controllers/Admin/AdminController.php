@@ -74,7 +74,54 @@ class AdminController extends Controller
         // Redirect back with success message
         return redirect()->back()->with($notification);
     }
+    // AdminChangePassword
+    public function AdminChangePassword()
+    {
+        $id = Auth::user()->id;
+        $user = User::find($id);
+        return view('admin.change-password',compact('user'));
+    }
+    //AdminChangePasswordSubmit
+    public function AdminChangePasswordSubmit(Request $request)
+    {
+        // dd($request->all());
+        // $request->validate([
+        //     'old_password' => 'required',
+        //     'new_password' => 'required|min:8|confirmed',
+        // ]);
+        // Get the authenticated user
+        $id = Auth::user()->id;
+        $user = User::find($id);
+        // Check if the old password is correct
+        if (!Hash::check($request->input('old_password'), $user->password)) {
+            $notification = array(
+                'message' => 'Old password is incorrect',
+                'alert-type' => 'error'
+            );
+            // Redirect back with error message
+            return redirect()->back()->with($notification);
+            
+        }
+        // Update the password
+        $user->password = Hash::make($request->input('new_password'));
+        $user->save();
+        //Notification 
+        $notification = array(
+            'message' => 'Password changed successfully',
+            'alert-type' => 'success'
+        );
+        // logout the user
+        Auth::guard('web')->logout();
 
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/admin/login')->with($notification);
+
+        // return redirect()->back()->with($notification);
+    }
+    //AdminLogin
     public function AdminLogin()
     {
         return view('admin.login');
