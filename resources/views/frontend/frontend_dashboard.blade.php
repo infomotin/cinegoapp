@@ -6,11 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
-    <title>Realshed - HTML 5 Template Preview</title>
-
+    <title>CineGoApp</title>
     <!-- Fav Icon -->
     <link rel="icon" href="{{ asset('frontend/assets/images/favicon.ico') }}" type="image/x-icon">
-
     <!-- Google Fonts -->
     <link
         href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
@@ -38,41 +36,23 @@
 <body>
 
     <div class="boxed_wrapper">
-
-
         <!-- preloader -->
         @include('frontend.home.preload')
         <!-- preloader end -->
-
-
         <!-- switcher menu -->
-
         <!-- end switcher menu -->
-
-
         <!-- main header -->
         @include('frontend.home.header')
         <!-- main-header end -->
-
         <!-- Mobile Menu  -->
         @include('frontend.home.mobile-menu')
         <!-- End Mobile Menu -->
-
-
         @yield('content')
-
-
         <!-- main-footer -->
         @include('frontend.home.footer')
         <!-- main-footer end -->
-
-
-
         <!--Scroll to top-->
-
     </div>
-
-
     <!-- jequery plugins -->
     <script src="{{ asset('frontend/assets/js/jquery.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/popper.min.js') }}"></script>
@@ -88,7 +68,6 @@
     <script src="{{ asset('frontend/assets/js/jQuery.style.switcher.min.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/jquery-ui.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/nav-tool.js') }}"></script>
-
     <!-- main-js -->
     <script src="{{ asset('frontend/assets/js/script.js') }}"></script>
 
