@@ -9,6 +9,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use App\Models\User;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -25,9 +26,17 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
+        //get the login user data 
+        $id = Auth::user()->id;
+        $user = User::find($id);
+        $userName = $user->name;
+
+        $notification = array(
+            'message' => 'Welcome back, ' . $userName,
+            'alert-type' => 'info'
+        );
         // dd($request->all());
         $request->authenticate();
-
         $request->session()->regenerate();
         //decide where to redirect after login 
         $url = '';
@@ -54,7 +63,7 @@ class AuthenticatedSessionController extends Controller
         
         // dd($url);
         // return redirect()->intended(RouteServiceProvider::HOME);
-        return redirect()->intended($url);
+        return redirect()->intended($url)->with($notification);
     }
 
     /**

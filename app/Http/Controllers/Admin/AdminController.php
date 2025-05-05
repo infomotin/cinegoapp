@@ -24,7 +24,7 @@ class AdminController extends Controller
         $user = User::find($id);
         // Pass the user data to the view
 
-        return view('admin.profile',compact('user'));
+        return view('admin.profile', compact('user'));
     }
     //AdminProfileUpdate
     public function AdminProfileUpdate(Request $request)
@@ -51,7 +51,7 @@ class AdminController extends Controller
             }
             // Store the new photo
             $photo = $request->file('photo');
-            $photoName = 'admin/images/'. date('YmdHi') .'.'. $photo->getClientOriginalExtension();
+            $photoName = 'admin/images/' . date('YmdHi') . '.' . $photo->getClientOriginalExtension();
             $photo->move(public_path('admin/images/'), $photoName);
             // Update the user's photo path
             $user->photo = $photoName;
@@ -79,7 +79,7 @@ class AdminController extends Controller
     {
         $id = Auth::user()->id;
         $user = User::find($id);
-        return view('admin.change-password',compact('user'));
+        return view('admin.change-password', compact('user'));
     }
     //AdminChangePasswordSubmit
     public function AdminChangePasswordSubmit(Request $request)
@@ -100,7 +100,6 @@ class AdminController extends Controller
             );
             // Redirect back with error message
             return redirect()->back()->with($notification);
-            
         }
         // Update the password
         $user->password = Hash::make($request->input('new_password'));
@@ -112,13 +111,9 @@ class AdminController extends Controller
         );
         // logout the user
         Auth::guard('web')->logout();
-
         $request->session()->invalidate();
-
         $request->session()->regenerateToken();
-
         return redirect('/admin/login')->with($notification);
-
         // return redirect()->back()->with($notification);
     }
     //AdminLogin
@@ -134,7 +129,7 @@ class AdminController extends Controller
             'login' => 'required',
             'password' => 'required',
         ]);
-        
+
         // Check if the login is an email or username or phone number
         $user = User::where('email', $request->input('login'))
             ->orWhere('username', $request->input('login'))
@@ -155,10 +150,9 @@ class AdminController extends Controller
         $request->session()->regenerate();
         // Redirect to the admin dashboard
         return redirect()->route('admin.dashboard')->with('success', 'Login successful');
-
     }
     //AdminProfile
-    
+
     //AdminLogout
     public function AdminLogout(Request $request): RedirectResponse
     {
@@ -167,7 +161,14 @@ class AdminController extends Controller
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
+        //Notification
+        $notification = array(
+            'message' => 'Logout successfully',
+            'alert-type' => 'success'
+        );
+        // Redirect back with success message
+        return redirect('/admin/login')->with($notification);
 
-        return redirect('/admin/login');
+        
     }
 }
