@@ -176,6 +176,10 @@
                                         <input type="email" name="email" id="email" required="">
                                     </div>
                                     <div class="form-group">
+                                        <label>Phone Number</label>
+                                        <input type="number" name="phone" id="phone" required="">
+                                    </div>
+                                    <div class="form-group">
                                         <label>Password</label>
                                         <input type="password" name="password" id="password" required="">
                                     </div>

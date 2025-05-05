@@ -11,14 +11,14 @@
             </div>
             <div class="right-column pull-right">
                 <ul class="social-links clearfix">
-                    <li><a href="index.html"><i class="fab fa-facebook-f"></i></a></li>
-                    <li><a href="index.html"><i class="fab fa-twitter"></i></a></li>
-                    <li><a href="index.html"><i class="fab fa-pinterest-p"></i></a></li>
-                    <li><a href="index.html"><i class="fab fa-google-plus-g"></i></a></li>
-                    <li><a href="index.html"><i class="fab fa-vimeo-v"></i></a></li>
+                    <li><a href="{{ route('index') }}"><i class="fab fa-facebook-f"></i></a></li>
+                    <li><a href="{{ route('index') }}"><i class="fab fa-twitter"></i></a></li>
+                    <li><a href="{{ route('index') }}"><i class="fab fa-pinterest-p"></i></a></li>
+                    <li><a href="{{ route('index') }}"><i class="fab fa-google-plus-g"></i></a></li>
+                    <li><a href="{{ route('index') }}"><i class="fab fa-vimeo-v"></i></a></li>
                 </ul>
                 <div class="sign-box">
-                    <a href="signin.html"><i class="fas fa-user"></i>Sign In</a>
+                    <a href="{{ route('login') }}"><i class="fas fa-user"></i>Sign In</a>
                 </div>
             </div>
         </div>
@@ -28,7 +28,7 @@
         <div class="outer-box">
             <div class="main-box">
                 <div class="logo-box">
-                    <figure class="logo"><a href="index.html"><img
+                    <figure class="logo"><a href="{{ route('index') }}"><img
                                 src="{{ asset('frontend/assets/images/logo.png') }}" alt=""></a>
                     </figure>
                 </div>
@@ -42,32 +42,32 @@
                     <nav class="main-menu navbar-expand-md navbar-light">
                         <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
                             <ul class="navigation clearfix">
-                                <li class="current dropdown"><a href="index.html"><span>Home</span></a>
+                                <li class="current dropdown"><a href="{{ route('index') }}"><span>Home</span></a>
                                     <ul>
-                                        <li><a href="index.html">Main Home</a></li>
+                                        <li><a href="{{ route('index') }}">Main Home</a></li>
                                         <li><a href="index-2.html">Home Modern</a></li>
                                         <li><a href="index-3.html">Home Map</a></li>
                                         <li><a href="index-4.html">Home Half Map</a></li>
                                         <li><a href="index-5.html">Home Agent</a></li>
                                         <li><a href="index-onepage.html">OnePage Home</a></li>
                                         <li><a href="index-rtl.html">RTL Home</a></li>
-                                        <li class="dropdown"><a href="index.html">Header Style</a>
+                                        <li class="dropdown"><a href="{{ route('index') }}">Header Style</a>
                                             <ul>
-                                                <li><a href="index.html">Header Style 01</a></li>
+                                                <li><a href="{{ route('index') }}">Header Style 01</a></li>
                                                 <li><a href="index-2.html">Header Style 02</a></li>
                                                 <li><a href="index-3.html">Header Style 03</a></li>
                                             </ul>
                                         </li>
                                     </ul>
                                 </li>
-                                <li class="dropdown"><a href="index.html"><span>Listing</span></a>
+                                <li class="dropdown"><a href="{{ route('index') }}"><span>Listing</span></a>
                                     <ul>
                                         <li><a href="agents-list.html">Agents List</a></li>
                                         <li><a href="agents-grid.html">Agents Grid</a></li>
                                         <li><a href="agents-details.html">Agent Details</a></li>
                                     </ul>
                                 </li>
-                                <li class="dropdown"><a href="index.html"><span>Property</span></a>
+                                <li class="dropdown"><a href="{{ route('index') }}"><span>Property</span></a>
                                     <ul>
                                         <li><a href="property-list.html">Property List</a></li>
                                         <li><a href="property-grid.html">Property Grid</a></li>
@@ -81,7 +81,7 @@
                                         <li><a href="property-details-4.html">Property Details 04</a></li>
                                     </ul>
                                 </li>
-                                <li class="dropdown"><a href="index.html"><span>Pages</span></a>
+                                <li class="dropdown"><a href="{{ route('index') }}"><span>Pages</span></a>
                                     <div class="megamenu">
                                         <div class="row clearfix">
                                             <div class="col-xl-4 column">
@@ -133,14 +133,14 @@
                                         </div>
                                     </div>
                                 </li>
-                                <li class="dropdown"><a href="index.html"><span>Agency</span></a>
+                                <li class="dropdown"><a href="{{ route('index') }}"><span>Agency</span></a>
                                     <ul>
                                         <li><a href="agency-list.html">Agency List</a></li>
                                         <li><a href="agency-grid.html">Agency Grid</a></li>
                                         <li><a href="agency-details.html">Agency Details</a></li>
                                     </ul>
                                 </li>
-                                <li class="dropdown"><a href="index.html"><span>Blog</span></a>
+                                <li class="dropdown"><a href="{{ route('index') }}"><span>Blog</span></a>
                                     <ul>
                                         <li><a href="blog-1.html">Blog 01</a></li>
                                         <li><a href="blog-2.html">Blog 02</a></li>
@@ -154,7 +154,7 @@
                     </nav>
                 </div>
                 <div class="btn-box">
-                    <a href="index.html" class="theme-btn btn-one"><span>+</span>Add Listing</a>
+                    <a href="{{ route('index') }}" class="theme-btn btn-one"><span>+</span>Add Listing</a>
                 </div>
             </div>
         </div>
@@ -165,7 +165,7 @@
         <div class="outer-box">
             <div class="main-box">
                 <div class="logo-box">
-                    <figure class="logo"><a href="index.html"><img
+                    <figure class="logo"><a href="{{ route('index') }}"><img
                                 src="{{ asset('frontend/assets/images/logo.png') }}" alt=""></a>
                     </figure>
                 </div>
@@ -175,7 +175,7 @@
                     </nav>
                 </div>
                 <div class="btn-box">
-                    <a href="index.html" class="theme-btn btn-one"><span>+</span>Add Listing</a>
+                    <a href="{{ route('index') }}" class="theme-btn btn-one"><span>+</span>Add Listing</a>
                 </div>
             </div>
         </div>
