@@ -43,22 +43,8 @@
             <div class="row clearfix">
                 <div class="col-lg-4 col-md-12 col-sm-12 sidebar-side">
                     <div class="blog-sidebar">
-                        <div class="sidebar-widget post-widget">
-                            <div class="widget-title">
-                                <h4>User Profile </h4>
-                            </div>
-                            <div class="post-inner">
-                                <div class="post">
-                                    <figure class="post-thumb"><a href="blog-details.html">
-                                            <img src="{{ !$user->photo ? asset('upload/no_image.jpg') : asset( $user->photo) }}" alt=""></a></figure>
-                                    <h5><a href="blog-details.html">{{ $user->name }} </a></h5>
-                                    <p>{{ $user->email }} </p>
-                                </div>
-                            </div>
-                        </div>
-
+                        @include('frontend.dashboard.user_title')
                         @include('frontend.dashboard.dashboard_sidebar')
-
                     </div>
                 </div>
 

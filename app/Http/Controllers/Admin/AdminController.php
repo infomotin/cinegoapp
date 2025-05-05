@@ -51,7 +51,7 @@ class AdminController extends Controller
             }
             // Store the new photo
             $photo = $request->file('photo');
-            $photoName = 'admin/images/'. '.' . $photo->getClientOriginalExtension();
+            $photoName = 'admin/images/'. date('YmdHi') .'.'. $photo->getClientOriginalExtension();
             $photo->move(public_path('admin/images/'), $photoName);
             // Update the user's photo path
             $user->photo = $photoName;
