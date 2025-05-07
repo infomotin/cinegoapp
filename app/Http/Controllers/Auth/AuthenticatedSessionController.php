@@ -7,9 +7,10 @@ use App\Http\Requests\Auth\LoginRequest;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 use App\Models\User;
+use Illuminate\Cache\RateLimiter;
+use Illuminate\Support\Facades\Auth;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -26,13 +27,12 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
-        //get the login user data 
-        $id = Auth::user()->id;
-        $user = User::find($id);
-        $userName = $user->name;
-
+        // $id = auth()->user()->id;
+        // $user = User::find($id);
+        // $userName = $user->username;
+        
         $notification = array(
-            'message' => 'Welcome back, ' . $userName,
+            'message' => 'Welcome back, ' . '$userName',
             'alert-type' => 'info'
         );
         // dd($request->all());
@@ -59,8 +59,6 @@ class AuthenticatedSessionController extends Controller
         }else {
             $url = '/';
         }
-
-        
         // dd($url);
         // return redirect()->intended(RouteServiceProvider::HOME);
         return redirect()->intended($url)->with($notification);
@@ -72,11 +70,8 @@ class AuthenticatedSessionController extends Controller
     public function destroy(Request $request): RedirectResponse
     {
         Auth::guard('web')->logout();
-
         $request->session()->invalidate();
-
         $request->session()->regenerateToken();
-
         return redirect('/');
     }
 }
