@@ -50,6 +50,7 @@
             <!-- partial -->
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('assets/vendors/datatables.net/jquery.dataTables.js') }}"></script>
     <script src="{{ asset('assets/vendors/datatables.net-bs5/dataTables.bootstrap5.js') }}"></script>
     <script src="{{ asset('assets/js/data-table.js') }}"></script>
@@ -67,6 +68,7 @@
     <!-- endinject -->
     <!-- Custom js for this page -->
     <script src="{{ asset('assets/js/dashboard-dark.js') }}"></script>
+    <script src="{{ asset('assets/js/code/code.js') }}"></script>
     <!-- End custom js for this page -->
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>

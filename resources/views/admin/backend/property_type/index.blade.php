@@ -67,61 +67,14 @@
         </div>
 
     </div>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-    <script>
-        @if (Session::has('message'))
-            var type = "{{ Session::get('alert-type', 'info') }}"
-            switch (type) {
-                case 'info':
-                    toastr.info(" {{ Session::get('message') }} ");
-                    break;
-
-                case 'success':
-                    toastr.success(" {{ Session::get('message') }} ");
-                    break;
-
-                case 'warning':
-                    toastr.warning(" {{ Session::get('message') }} ");
-                    break;
-
-                case 'error':
-                    toastr.error(" {{ Session::get('message') }} ");
-                    break;
-            }
-        @endif
-    </script>
+    
     <script>
         $(document).ready(function() {
             $('#dataTableExample').DataTable();
         });
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>  
-    <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.7.1/js/dataTables.buttons.min.js"></script>
-
-
-    {{-- using swift alert for delete confirmation --}}
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-        $('#delete').click(function(e){
-            alert('Are you sure you want to delete this item?');
-            e.preventDefault();
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    this.closest('form').submit();
-                }
-            })
-        });
-    </script>
+    
+    
 
 
 @endsection
