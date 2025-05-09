@@ -32,7 +32,7 @@
                             <a href="{{ route('admin.backend.property_type.index') }}" class="nav-link">Property Type</a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/email/read.html" class="nav-link">Property Type Add Form</a>
+                            <a href="{{ route('admin.backend.amenities.index') }}" class="nav-link">Amenities</a>
                         </li>
                         
                     </ul>

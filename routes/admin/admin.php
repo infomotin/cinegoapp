@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route; 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\Backend\PropertyTypeController;
+use App\Http\Controllers\Admin\Backend\AmenitieController;
 
 
 Route::middleware(['auth', 'verified','roleMiddleware:admin'])->group(function () {
@@ -27,6 +28,15 @@ Route::middleware(['auth', 'verified','roleMiddleware:admin'])->group(function (
         // Route::get('/admin/property/type/status/{id}', 'PropertyTypeStatus')->name('admin.property.type.status');
         // Route::get('/admin/property/type/restore/{id}', 'PropertyTypeRestore')->name('admin.property.type.restore');
         // Route::get('/admin/property/type/force/delete/{id}', 'PropertyTypeForceDelete')->name('admin.property.type.force.delete');
+    });
+    //AmenitiesController
+    Route::controller(AmenitieController::class)->group(function () {
+        Route::get('/admin/amenities', 'AmenitiesIndex')->name('admin.backend.amenities.index');
+        Route::get('/admin/amenities/create', 'AmenitiesCreate')->name('admin.backend.amenities.create');
+        Route::post('/admin/amenities/store', 'AmenitiesStore')->name('admin.backend.amenities.store');
+        // Route::get('/admin/amenities/edit/{id}', 'AmenitiesEdit')->name('admin.backend.amenities.edit');
+        // Route::post('/admin/amenities/update/{id}', 'AmenitiesUpdate')->name('admin.backend.amenities.update');
+        // Route::get('/admin/amenities/delete/{id}', 'AmenitiesDelete')->name('admin.backend.amenities.delete');
     });
 
 

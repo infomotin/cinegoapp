@@ -69,6 +69,7 @@
     <!-- Custom js for this page -->
     <script src="{{ asset('assets/js/dashboard-dark.js') }}"></script>
     <script src="{{ asset('assets/js/code/code.js') }}"></script>
+    <script src="{{ asset('assets/js/code/validate.min.js') }}"></script>
     <!-- End custom js for this page -->
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
