@@ -36,4 +36,36 @@ class AmenitieController extends Controller
         return redirect()->route('admin.backend.amenities.index')->with($notification);
         
     }
+    //AmenitiesEdit
+    public function AmenitiesEdit($id)
+    {
+        $amenities = Amenities::findOrFail($id);
+        return view('admin.backend.amenities.edit', compact('amenities'));
+    }
+    //AmenitiesUpdate
+    public function AmenitiesUpdate(Request $request, $id)
+    {
+        $request->validate([
+            'amenities_name' => 'required',
+        ]);
+
+        Amenities::findOrFail($id)->update([
+            'amenities_name' => $request->amenities_name,
+        ]);
+        $notification = array(
+            'message' => 'Amenities updated successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('admin.backend.amenities.index')->with($notification);
+    }
+    //AmenitiesDelete
+    public function AmenitiesDelete($id)
+    {
+        Amenities::findOrFail($id)->delete();
+        $notification = array(
+            'message' => 'Amenities deleted successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('admin.backend.amenities.index')->with($notification);
+    }
 }

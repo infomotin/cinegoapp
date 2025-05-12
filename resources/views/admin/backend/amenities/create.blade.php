@@ -1,8 +1,7 @@
 @extends('admin.dashboard')
 @section('content')
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
     <div class="page-content">
 
         <nav class="page-breadcrumb">
@@ -25,13 +24,14 @@
                                     Type</a>
                             </div>
                         </div>
-                        <form class="forms-sample" method="POST" action="{{ route('admin.backend.amenities.store') }}" id="myForm">
+                        <form class="forms-sample" method="POST" action="{{ route('admin.backend.amenities.store') }}"
+                            id="myForm">
                             @csrf
                             <div class="form-group me-2 mb-3">
                                 <label for="exampleInputName1">Amenities Type</label>
-                                <input type="text" class="form-control"
-                                    id="amenities_name" name="amenities_name" placeholder="Amenities Type">
-                                
+                                <input type="text" class="form-control" id="amenities_name" name="amenities_name"
+                                    placeholder="Amenities Type">
+
                             </div>
 
                             <button type="submit" class="btn btn-primary me-2">Submit</button>

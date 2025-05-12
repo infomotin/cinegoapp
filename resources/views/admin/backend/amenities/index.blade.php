@@ -17,7 +17,8 @@
                         <div
                             class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                             <div class="btn-group me-2">
-                                <a href="{{ route('admin.backend.amenities.create') }}" class="btn btn-primary">Add Amenities</a>
+                                <a href="{{ route('admin.backend.amenities.create') }}" class="btn btn-primary">Add
+                                    Amenities</a>
                             </div>
                         </div>
                         <div class="table-responsive">
@@ -34,14 +35,16 @@
                                         <tr>
                                             <td>{{ $key + 1 }}</td>
                                             <td>{{ $amenitie->amenities_name }}</td>
-                                            
+
                                             </td>
-                                            
+
                                             <td>
-                                                <a href="#" type="button" class="btn btn-primary btn-icon-text">
+                                                <a href="{{ route('admin.backend.amenities.edit', $amenitie->id) }}"
+                                                    type="button" class="btn btn-primary btn-icon-text">
                                                     Edit
                                                 </a>
-                                                <a href="#" type="button" class="btn btn-danger btn-icon-text" id="delete">
+                                                <a href="{{ route('admin.backend.amenities.delete', $amenitie->id) }}"
+                                                    type="button" class="btn btn-danger btn-icon-text" id="delete">
                                                     Delete
                                                 </a>
                                             </td>
@@ -56,14 +59,10 @@
         </div>
 
     </div>
-    
+
     <script>
         $(document).ready(function() {
             $('#dataTableExample').DataTable();
         });
     </script>
-    
-    
-
-
 @endsection

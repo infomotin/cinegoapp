@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\Backend\PropertyTypeController;
 use App\Http\Controllers\Admin\Backend\AmenitieController;
+use App\Http\Controllers\Backend\PropertyController;
 
 
 Route::middleware(['auth', 'verified','roleMiddleware:admin'])->group(function () {
@@ -34,11 +35,19 @@ Route::middleware(['auth', 'verified','roleMiddleware:admin'])->group(function (
         Route::get('/admin/amenities', 'AmenitiesIndex')->name('admin.backend.amenities.index');
         Route::get('/admin/amenities/create', 'AmenitiesCreate')->name('admin.backend.amenities.create');
         Route::post('/admin/amenities/store', 'AmenitiesStore')->name('admin.backend.amenities.store');
-        // Route::get('/admin/amenities/edit/{id}', 'AmenitiesEdit')->name('admin.backend.amenities.edit');
-        // Route::post('/admin/amenities/update/{id}', 'AmenitiesUpdate')->name('admin.backend.amenities.update');
-        // Route::get('/admin/amenities/delete/{id}', 'AmenitiesDelete')->name('admin.backend.amenities.delete');
+        Route::get('/admin/amenities/edit/{id}', 'AmenitiesEdit')->name('admin.backend.amenities.edit');
+        Route::post('/admin/amenities/update/{id}', 'AmenitiesUpdate')->name('admin.backend.amenities.update');
+        Route::get('/admin/amenities/delete/{id}', 'AmenitiesDelete')->name('admin.backend.amenities.delete');
     });
-
+    //PropertyController
+    Route::controller(PropertyController::class)->group(function () {
+        Route::get('/property', 'PropertyIndex')->name('backend.property.index');
+        Route::get('/property/create', 'PropertyCreate')->name('backend.property.create');
+        // Route::post('/property/store', 'PropertyStore')->name('backend.property.store');
+        // Route::get('/property/edit/{id}', 'PropertyEdit')->name('backend.property.edit');
+        // Route::post('/property/update/{id}', 'PropertyUpdate')->name('backend.property.update');
+        // Route::get('/property/delete/{id}', 'PropertyDelete')->name('backend.property.delete');
+    });
 
 });
 Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login');

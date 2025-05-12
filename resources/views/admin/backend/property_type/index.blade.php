@@ -73,8 +73,4 @@
             $('#dataTableExample').DataTable();
         });
     </script>
-    
-    
-
-
 @endsection
