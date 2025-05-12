@@ -40,7 +40,7 @@
                                 <tbody>
                                     @foreach ($properties as $key => $item)
                                         <tr>
-                                            <<td>{{ $key + 1 }}</td>
+                                            <td>{{ $key + 1 }}</td>
                                                 <td><img src="{{ asset($item->property_thambnail) }}"
                                                         style="width:70px; height:40px;"> </td>
                                                 <td>{{ $item->property_name }}</td>
@@ -56,29 +56,21 @@
                                                     @endif
 
                                                 </td>
-                                                <td class="d-flex">
+
                                                 <td>
 
-                                                    <a href="#"
-                                                        class="btn btn-inverse-info" title="Details"> <i
+                                                    <a href="#" class="btn btn-inverse-info" title="Details"> <i
                                                             data-feather="eye"></i>
                                                     </a>
 
-                                                    <a href="#"
-                                                        class="btn btn-inverse-warning" title="Edit"> <i
+                                                    <a href="#" class="btn btn-inverse-warning" title="Edit"> <i
                                                             data-feather="edit"></i> </a>
 
-                                                    <a href="#"
-                                                        class="btn btn-inverse-danger" id="delete" title="Delete"> <i
-                                                            data-feather="trash-2"></i> </a>
+                                                    <a href="#" class="btn btn-inverse-danger" id="delete"
+                                                        title="Delete"> <i data-feather="trash-2"></i> </a>
                                                 </td>
-                                                <form action="#"
-                                                    method="POST" class="me-2">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                                                </form>
-                                                </td>
+
+
                                         </tr>
                                     @endforeach
                                 </tbody>

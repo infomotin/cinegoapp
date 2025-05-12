@@ -43,7 +43,7 @@ Route::middleware(['auth', 'verified','roleMiddleware:admin'])->group(function (
     Route::controller(PropertyController::class)->group(function () {
         Route::get('/property', 'PropertyIndex')->name('backend.property.index');
         Route::get('/property/create', 'PropertyCreate')->name('backend.property.create');
-        // Route::post('/property/store', 'PropertyStore')->name('backend.property.store');
+        Route::post('/property/store', 'PropertyStore')->name('backend.property.store');
         // Route::get('/property/edit/{id}', 'PropertyEdit')->name('backend.property.edit');
         // Route::post('/property/update/{id}', 'PropertyUpdate')->name('backend.property.update');
         // Route::get('/property/delete/{id}', 'PropertyDelete')->name('backend.property.delete');

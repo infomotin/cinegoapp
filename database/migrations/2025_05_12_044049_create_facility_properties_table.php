@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->integer('property_id');
             $table->string('facility_name')->nullable();
-            $table->string('facility_slug')->nullable();
+            $table->string('facility_distance')->nullable();
             $table->string('facility_icon')->nullable();
             $table->string('facility_type')->nullable();
             $table->string('distance')->nullable();

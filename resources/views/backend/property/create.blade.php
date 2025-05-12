@@ -1,6 +1,6 @@
 @extends('admin.dashboard')
 @section('content')
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <div class="page-content">
 
 
@@ -17,7 +17,7 @@
                             <h6 class="card-title">Add Property </h6>
 
 
-                            <form method="post" action="#" id="myForm" enctype="multipart/form-data">
+                            <form method="post" action="{{ route('backend.property.store') }}" id="myForm" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
                                     <div class="col-sm-6">
@@ -114,84 +114,117 @@
 
                                 </div><!-- Row -->
 
-                                <div style="background-color: rgb(149, 162, 173); padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
+                                <div style=" padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
+                                    <h6 style="color: #fff;">Property Address</h6>
                                     <div class="row">
-                                    <div class="col-sm-3">
-                                        <div class="mb-3">
-                                            <label class="form-label">Address</label>
-                                            <input type="text" name="address" class="form-control">
+                                        <div class="col-sm-3">
+                                            <div class="mb-3">
+                                                <label class="form-label">City</label>
+                                                <input type="text" name="city_name" class="form-control">
+                                            </div>
+                                        </div><!-- Col -->
+                                        <div class="col-sm-3">
+                                            <div class="mb-3">
+                                                <label class="form-label">Street Name</label>
+                                                <input type="text" name="street_name" class="form-control">
+                                            </div>
+                                        </div><!-- Col -->
+                                        <div class="col-sm-3">
+                                            <div class="mb-3">
+                                                <label class="form-label">Street Number</label>
+                                                <input type="text" name="street_number" class="form-control">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <!-- Col -->
-                                    <div class="col-sm-3">
-                                        <div class="mb-3">
-                                            <label class="form-label">City</label>
-                                            <input type="text" name="city" class="form-control">
+                                        <div class="col-sm-3">
+                                            <div class="mb-3">
+                                                <label class="form-label">building_name</label>
+                                                <input type="text" name="building_name" class="form-control">
+                                            </div>
                                         </div>
+                                        <!-- Col -->
                                     </div>
-                                    <!-- Col -->
-                                    <div class="col-sm-3">
-                                        <div class="mb-3">
-                                            <label class="form-label">State</label>
-                                            <select name="state" class="form-select" id="exampleFormControlSelect1">
-                                                <option selected="" disabled="">Select State</option>
-                                                {{-- @foreach ($pstate as $state)
-                                                    <option value="{{ $state->id }}">{{ $state->state_name }}</option>
-                                                @endforeach --}}
-                                            </select>
+                                    <!-- Row -->
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <div class="mb-3">
+                                                <label class="form-label">Apartment Number</label>
+                                                <input type="text" name="apartment_number" class="form-control">
+                                            </div>
+                                        </div><!-- Col -->
+                                        <div class="col-sm-3">
+                                            <div class="mb-3">
+                                                <label class="form-label">Floor Number</label>
+                                                <input type="text" name="floor_number" class="form-control">
+                                            </div>
+                                        </div><!-- Col -->
+                                        <div class="col-sm-3">
+                                            <div class="mb-3">
+                                                <label class="form-label">Landmark</label>
+                                                <input type="text" name="landmark" class="form-control">
+                                            </div>
                                         </div>
+                                        <!-- Col -->
                                     </div>
-                                    <!-- Col -->
+                                    <!-- Row -->
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <div class="mb-3">
+                                                <label class="form-label">State Code</label>
+                                                <input type="text" name="state_code" class="form-control">
+                                            </div>
+                                        </div><!-- Col -->
+                                        <div class="col-sm-3">
+                                            <div class="mb-3">
+                                                <label class="form-label">State Name</label>
+                                                <input type="text" name="state_name" class="form-control">
+                                            </div>
+                                        </div><!-- Col -->
+                                        <div class="col-sm-3">
+                                            <div class="mb-3">
+                                                <label class="form-label">Country Code</label>
+                                                <input type="text" name="country_code" class="form-control">
+                                            </div>
+                                        </div>
+                                        <!-- Col -->
+                                    </div>
+                                    <!-- Row -->
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <div class="mb-3">
+                                                <label class="form-label">Country Name</label>
+                                                <input type="text" name="country_name" class="form-control">
+                                            </div>
+                                        </div><!-- Col -->
+                                        <div class="col-sm-3">
+                                            <div class="mb-3">
+                                                <label class="form-label">Zip Code</label>
+                                                <input type="text" name="zip_code" class="form-control">
+                                            </div>
+                                        </div><!-- Col -->
+                                        <div class="col-sm-3">
+                                            <div class="mb-3">
+                                                <label class="form-label">Street Address</label>
+                                                <input type="text" name="street_address" class="form-control">
 
-                                    <div class="col-sm-3">
-                                        <div class="mb-3">
-                                            <label class="form-label">Postal Code </label>
-                                            <input type="text" name="postal_code" class="form-control">
+                                            </div>
                                         </div>
+                                        <!-- Col -->
+                                        <div class="col-sm-3">
+                                            <div class="mb-3">
+                                                <label class="form-label">Street Address 2</label>
+                                                <input type="text" name="street_address2" class="form-control">
+
+                                            </div>
+                                        </div>
+                                        <!-- Col -->
                                     </div>
-                                    <!-- Col -->
+                                    <!-- Row -->
+
+
 
                                 </div>
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <div class="mb-3">
-                                            <label class="form-label">Address</label>
-                                            <input type="text" name="address" class="form-control">
-                                        </div>
-                                    </div>
-                                    <!-- Col -->
-                                    <div class="col-sm-3">
-                                        <div class="mb-3">
-                                            <label class="form-label">City</label>
-                                            <input type="text" name="city" class="form-control">
-                                        </div>
-                                    </div>
-                                    <!-- Col -->
-                                    <div class="col-sm-3">
-                                        <div class="mb-3">
-                                            <label class="form-label">State</label>
-                                            <select name="state" class="form-select" id="exampleFormControlSelect1">
-                                                <option selected="" disabled="">Select State</option>
-                                                {{-- @foreach ($pstate as $state)
-                                                    <option value="{{ $state->id }}">{{ $state->state_name }}</option>
-                                                @endforeach --}}
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <!-- Col -->
 
-                                    <div class="col-sm-3">
-                                        <div class="mb-3">
-                                            <label class="form-label">Postal Code </label>
-                                            <input type="text" name="postal_code" class="form-control">
-                                        </div>
-                                    </div>
-                                    <!-- Col -->
 
-                                </div> 
-                                </div>
-                               
-                                
                                 <div class="row">
                                     <div class="col-sm-4">
                                         <div class="mb-3">
@@ -245,9 +278,9 @@
                                             <label class="form-label">Property Type </label>
                                             <select name="ptype_id" class="form-select" id="exampleFormControlSelect1">
                                                 <option selected="" disabled="">Select Type</option>
-                                                {{-- @foreach ($propertytype as $ptype)
+                                                @foreach ($property_types as $ptype)
                                                     <option value="{{ $ptype->id }}">{{ $ptype->type_name }}</option>
-                                                @endforeach --}}
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div><!-- Col -->
@@ -257,10 +290,11 @@
                                             <select name="amenities_id[]" class="js-example-basic-multiple form-select"
                                                 multiple="multiple" data-width="100%">
 
-                                                {{-- @foreach ($amenities as $ameni)
-                                                    <option value="{{ $ameni->amenitis_name }}">{{ $ameni->amenitis_name }}
+                                                @foreach ($amenities as $ameni)
+                                                    <option value="{{ $ameni->amenities_name }}">
+                                                        {{ $ameni->amenities_name }}
                                                     </option>
-                                                @endforeach --}}
+                                                @endforeach
 
                                             </select>
                                         </div>
@@ -270,9 +304,9 @@
                                             <label class="form-label"> Agent </label>
                                             <select name="agent_id" class="form-select" id="exampleFormControlSelect1">
                                                 <option selected="" disabled="">Select Agent</option>
-                                                {{-- @foreach ($activeAgent as $agent)
+                                                @foreach ($agents as $agent)
                                                     <option value="{{ $agent->id }}">{{ $agent->name }}</option>
-                                                @endforeach --}}
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div><!-- Col -->

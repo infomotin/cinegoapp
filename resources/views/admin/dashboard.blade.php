@@ -16,10 +16,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <!-- End fonts -->
+    
     <!-- core:css -->
     <link rel="stylesheet" href="{{ asset('assets/vendors/datatables.net-bs5/dataTables.bootstrap5.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendors/core/core.css') }}">
     <!-- endinject -->
+    <link rel="stylesheet" href="{{ asset('assets/vendors/select2/select2.min.css')}}">
+	<link rel="stylesheet" href="{{ asset('assets/vendors/jquery-tags-input/jquery.tagsinput.min.css')}}">
     <!-- Plugin css for this page -->
     <link rel="stylesheet" href="{{ asset('assets/vendors/flatpickr/flatpickr.min.css') }}">
     <!-- End plugin css for this page -->
@@ -54,7 +57,7 @@
     <script src="{{ asset('assets/vendors/datatables.net/jquery.dataTables.js') }}"></script>
     <script src="{{ asset('assets/vendors/datatables.net-bs5/dataTables.bootstrap5.js') }}"></script>
     <script src="{{ asset('assets/js/data-table.js') }}"></script>
-	
+
     <!-- core:js -->
     <script src="{{ asset('assets/vendors/core/core.js') }}"></script>
     <!-- endinject -->
@@ -71,6 +74,36 @@
     <script src="{{ asset('assets/js/code/code.js') }}"></script>
     <script src="{{ asset('assets/js/code/validate.min.js') }}"></script>
     <!-- End custom js for this page -->
+    <!-- Plugin js for this page -->
+	<script src="{{ asset('assets/vendors/jquery-validation/jquery.validate.min.js')}}"></script>
+	<script src="{{ asset('assets/vendors/bootstrap-maxlength/bootstrap-maxlength.min.js')}}"></script>
+
+  
+	<script src="{{ asset('assets/vendors/inputmask/jquery.inputmask.min.js')}}"></script>
+	<script src="{{ asset('assets/vendors/select2/select2.min.js')}}"></script>
+	<script src="{{ asset('assets/vendors/typeahead.js/typeahead.bundle.min.js')}}"></script>
+	<script src="{{ asset('assets/vendors/jquery-tags-input/jquery.tagsinput.min.js')}}"></script>
+	<script src="{{ asset('assets/vendors/dropzone/dropzone.min.js')}}"></script>
+	<script src="{{ asset('assets/vendors/dropify/dist/dropify.min.js')}}"></script>
+	<script src="{{ asset('assets/vendors/pickr/pickr.min.js')}}"></script>
+	<script src="{{ asset('assets/vendors/moment/moment.min.js')}}"></script>
+	<script src="{{ asset('assets/vendors/flatpickr/flatpickr.min.js')}}"></script>
+	<!-- End plugin js for this page -->
+
+	<!-- inject:js -->
+	<script src="{{ asset('assets/vendors/feather-icons/feather.min.js')}}"></script>
+	<script src="{{ asset('assets/js/template.js')}}"></script>
+	<!-- endinject -->
+
+	<!-- Custom js for this page -->
+	<script src="{{ asset('assets/js/form-validation.js')}}"></script>
+	<script src="{{ asset('assets/js/bootstrap-maxlength.js')}}"></script>
+	<script src="{{ asset('assets/js/inputmask.js')}}"></script>
+	<script src="{{ asset('assets/js/select2.js')}}"></script>
+	<script src="{{ asset('assets/js/typeahead.js')}}"></script>
+	<script src="{{ asset('assets/js/tags-input.js')}}"></script>
+	
+	<!-- End custom js for this page -->
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
