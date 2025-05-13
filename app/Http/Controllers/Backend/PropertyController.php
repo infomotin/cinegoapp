@@ -157,6 +157,8 @@ class PropertyController extends Controller
         $property_types = PropertyType::all();
         $amenities = Amenities::all();
         $agents = User::where('role', 'agent')->where('status', 'active')->get();
-        return view('backend.property.edit', compact('property', 'property_types', 'amenities', 'agents'));
+        $multiImage  = MultiImageProperty::where('property_id', $id)->get();
+        $facilities = FacilityProperty::where('property_id', $id)->get();
+        return view('backend.property.edit', compact('property', 'property_types', 'amenities', 'agents', 'multiImage', 'facilities'));
     }
 }

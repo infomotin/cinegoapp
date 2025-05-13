@@ -299,7 +299,7 @@
                                     <div class="mb-3">
                                         <label class="form-label">Short Description</label>
                                         <textarea name="short_descp" class="form-control" id="exampleFormControlTextarea1" rows="3"
-                                            value="{{ $property->short_descp }}"></textarea>
+                                            > {!! $property->short_descp !!}</textarea>
                                     </div>
                                 </div><!-- Col -->
 
@@ -307,7 +307,7 @@
                                     <div class="mb-3">
                                         <label class="form-label">Long Description</label>
                                         <textarea name="long_descp" class="form-control" name="tinymce" id="tinymceExample" rows="10"
-                                            value="{{ $property->long_descp }}"></textarea>
+                                           >{!! $property->long_descp !!}</textarea>
                                     </div>
                                 </div><!-- Col -->
                                 <hr>
@@ -387,7 +387,188 @@
             </div>
         </div>
     </div>
+    <div class="page-content" style="margin-top: -35px;">
 
+        <div class="row profile-body">
+            <div class="col-md-12 col-xl-12 middle-wrapper">
+                <div class="row">
+
+                    <div class="card">
+                        <div class="card-body">
+                            <h6 class="card-title">Edit Multi Image </h6>
+
+
+                            <form method="post" action="#" id="myForm" enctype="multipart/form-data">
+                                @csrf
+
+
+                                <div class="table-responsive">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Sl</th>
+                                                <th>Image</th>
+                                                <th>Change Image </th>
+                                                <th>Delete </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            @foreach ($multiImage as $key => $img)
+                                                <tr>
+
+                                                    <td>{{ $key + 1 }}</td>
+
+                                                    <td class="py-1">
+                                                        <img src="{{ asset($img->photo_name) }}" alt="image"
+                                                            style="width:50px; height:50px;">
+                                                    </td>
+
+                                                    <td>
+                                                        <input type="file" class="form-control"
+                                                            name="multi_img[{{ $img->id }}]">
+                                                    </td>
+                                                    <td>
+                                                        <input type="submit" class="btn btn-primary px-4"
+                                                            value="Update Image">
+
+                                                        <a href="#" class="btn btn-danger" id="delete">Delete
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </form>
+
+
+                            <form method="post" action="#" id="myForm" enctype="multipart/form-data">
+                                @csrf
+
+                                <input type="hidden" name="imageid" value="{{ $property->id }}">
+
+                                <table class="table table-striped">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <input type="file" class="form-control" name="multi_img">
+                                            </td>
+
+                                            <td>
+                                                <input type="submit" class="btn btn-info px-4" value="Add Image">
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </form>
+
+
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page-content" style="margin-top: -35px;">
+
+        <div class="row profile-body">
+            <div class="col-md-12 col-xl-12 middle-wrapper">
+                <div class="row">
+
+                    <div class="card">
+                        <div class="card-body">
+                            <h6 class="card-title">Edit Property Facility </h6>
+
+
+                            <form method="post" action="#" id="myForm" enctype="multipart/form-data">
+                                @csrf
+
+                                <input type="hidden" name="id" value="{{ $property->id }}">
+
+                                @foreach ($facilities as $item)
+                                    <div class="row add_item">
+                                        <div class="whole_extra_item_add" id="whole_extra_item_add">
+                                            <div class="whole_extra_item_delete" id="whole_extra_item_delete">
+                                                <div class="container mt-2">
+                                                    <div class="row">
+
+                                                        <div class="form-group col-md-4">
+                                                            <label for="facility_name">Facilities</label>
+                                                            <select name="facility_name[]" id="facility_name"
+                                                                class="form-control">
+                                                                <option value="">Select Facility</option>
+                                                                <option value="Hospital"
+                                                                    {{ $item->facility_name == 'Hospital' ? 'selected' : '' }}>
+                                                                    Hospital</option>
+                                                                <option value="SuperMarket"
+                                                                    {{ $item->facility_name == 'SuperMarket' ? 'selected' : '' }}>
+                                                                    Super Market</option>
+                                                                <option value="School"
+                                                                    {{ $item->facility_name == 'School' ? 'selected' : '' }}>
+                                                                    School</option>
+                                                                <option value="Entertainment"
+                                                                    {{ $item->facility_name == 'Entertainment' ? 'selected' : '' }}>
+                                                                    Entertainment</option>
+                                                                <option value="Pharmacy"
+                                                                    {{ $item->facility_name == 'Pharmacy' ? 'selected' : '' }}>
+                                                                    Pharmacy</option>
+                                                                <option value="Airport"
+                                                                    {{ $item->facility_name == 'Airport' ? 'selected' : '' }}>
+                                                                    Airport</option>
+                                                                <option value="Railways"
+                                                                    {{ $item->facility_name == 'Railways' ? 'selected' : '' }}>
+                                                                    Railways</option>
+                                                                <option value="Bus Stop"
+                                                                    {{ $item->facility_name == 'Bus Stop' ? 'selected' : '' }}>
+                                                                    Bus Stop</option>
+                                                                <option value="Beach"
+                                                                    {{ $item->facility_name == 'Beach' ? 'selected' : '' }}>
+                                                                    Beach</option>
+                                                                <option value="Mall"
+                                                                    {{ $item->facility_name == 'Mall' ? 'selected' : '' }}>
+                                                                    Mall</option>
+                                                                <option value="Bank"
+                                                                    {{ $item->facility_name == 'Bank' ? 'selected' : '' }}>
+                                                                    Bank</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="form-group col-md-4">
+                                                            <label for="distance">Distance</label>
+                                                            <input type="text" name="distance[]" id="distance"
+                                                                class="form-control" value="{{ $item->facility_distance }}">
+                                                        </div>
+                                                        <div class="form-group col-md-4" style="padding-top: 20px">
+                                                            <span class="btn btn-success btn-sm addeventmore"><i
+                                                                    class="fa fa-plus-circle">Add</i></span>
+                                                            <span class="btn btn-danger btn-sm removeeventmore"><i
+                                                                    class="fa fa-minus-circle">Remove</i></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+
+                                <br> <br>
+                                <button type="submit" class="btn btn-primary">Save Changes </button>
+
+
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 
