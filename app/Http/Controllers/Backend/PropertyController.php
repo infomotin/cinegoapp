@@ -139,6 +139,7 @@ class PropertyController extends Controller
                 MultiImageProperty::insert([
                     'property_id' => $property_id,
                     'photo_name' => 'upload/property/multi_image/'.$image_name,
+                    'photo_slug' => strtolower(str_replace(' ', '-', $image_name)),
                     'created_at' => now(),
                 ]);
             }
@@ -149,5 +150,13 @@ class PropertyController extends Controller
         );
         return redirect()->route('backend.property.index')->with($notification);
     }
-        
+    //PropertyEdit
+    public function PropertyEdit($id)
+    {
+        $property = Property::findOrFail($id);
+        $property_types = PropertyType::all();
+        $amenities = Amenities::all();
+        $agents = User::where('role', 'agent')->where('status', 'active')->get();
+        return view('backend.property.edit', compact('property', 'property_types', 'amenities', 'agents'));
+    }
 }

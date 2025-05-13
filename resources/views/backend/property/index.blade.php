@@ -44,9 +44,9 @@
                                                 <td><img src="{{ asset($item->property_thambnail) }}"
                                                         style="width:70px; height:40px;"> </td>
                                                 <td>{{ $item->property_name }}</td>
-                                                <td>{{ 'working with model ' }}</td>
+                                                <td>{{ $item['propertyType']['type_name'] }}</td>
                                                 <td>{{ $item->property_status }}</td>
-                                                <td>{{ $item->city }}</td>
+                                                <td>{{ $item->city_name }}</td>
                                                 <td>{{ $item->property_code }}</td>
                                                 <td>
                                                     @if ($item->status == 1)
@@ -63,7 +63,7 @@
                                                             data-feather="eye"></i>
                                                     </a>
 
-                                                    <a href="#" class="btn btn-inverse-warning" title="Edit"> <i
+                                                    <a href="{{ route('backend.property.edit', $item->id) }}" class="btn btn-inverse-warning" title="Edit"> <i
                                                             data-feather="edit"></i> </a>
 
                                                     <a href="#" class="btn btn-inverse-danger" id="delete"
