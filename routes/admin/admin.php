@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\Backend\PropertyTypeController;
 use App\Http\Controllers\Admin\Backend\AmenitieController;
 use App\Http\Controllers\Backend\PropertyController;
+use App\Http\Middleware\RedirectIfAuthenticated;
 
 
 Route::middleware(['auth', 'verified','roleMiddleware:admin'])->group(function () {
@@ -51,9 +52,12 @@ Route::middleware(['auth', 'verified','roleMiddleware:admin'])->group(function (
         Route::get('/property/multi_image/delete/{id}', 'PropertyMultiImageDelete')->name('property.multi_image.delete');
         Route::post('/property/multi_image/new', 'PropertyMultiImageAdd')->name('property.multi_image.store');
         Route::post('/property/facility/update/', 'PropertyFacilityUpdate')->name('property.facility.update');
+        Route::get('/property/delete/{id}', 'PropertyShow')->name('backend.property.details');
+        Route::post('/property/inactive/', 'PropertyInactive')->name('backend.property.inactive');
+        Route::post('/property/active/', 'PropertyActive')->name('backend.property.active');
     });
 
 });
-Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login');
-Route::post('/admin/login', [AdminController::class, 'AdminSubmit'])->name('admin.login.submit');
+Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login')->middleware(RedirectIfAuthenticated::class);
+Route::post('/admin/login', [AdminController::class, 'AdminSubmit'])->name('admin.login.submit')->middleware(RedirectIfAuthenticated::class);
  

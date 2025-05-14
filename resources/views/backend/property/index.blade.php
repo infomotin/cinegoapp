@@ -59,7 +59,7 @@
 
                                                 <td>
 
-                                                    <a href="#" class="btn btn-inverse-info" title="Details"> <i
+                                                    <a href="{{ route('backend.property.details', $item->id) }}" class="btn btn-inverse-info" title="Details"> <i
                                                             data-feather="eye"></i>
                                                     </a>
 
