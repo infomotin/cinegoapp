@@ -291,7 +291,7 @@
                                                 multiple="multiple" data-width="100%">
 
                                                 @foreach ($amenities as $ameni)
-                                                    <option value="{{ $ameni->amenities_name }}">
+                                                    <option value="{{ $ameni->id }}">
                                                         {{ $ameni->amenities_name }}
                                                     </option>
                                                 @endforeach

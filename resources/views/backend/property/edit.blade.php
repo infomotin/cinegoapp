@@ -12,9 +12,10 @@
                     <div class="card">
                         <div class="card-body">
                             <h6 class="card-title">Add Property </h6>
-                            <form method="post" action="{{ route('backend.property.store') }}" id="myForm"
+                            <form method="post" action="{{ route('backend.property.update', $property->id) }}" id="myForm"
                                 enctype="multipart/form-data">
                                 @csrf
+                                <input type="hidden" name="id" value="{{ $property->id }}">
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group mb-3">
@@ -272,8 +273,8 @@
                                                 multiple="multiple" data-width="100%">
 
                                                 @foreach ($amenities as $ameni)
-                                                    <option value="{{ $ameni->amenities_name }}"
-                                                        {{ in_array($ameni->amenities_name, $amenities->pluck('amenities_name')->toArray()) ? 'selected' : '' }}>
+                                                    <option value="{{ $ameni->id }}"
+                                                        {{ in_array($ameni->id, $amenities_id) ? 'selected' : '' }}>
                                                         {{ $ameni->amenities_name }}
                                                     </option>
                                                 @endforeach
@@ -352,7 +353,7 @@
                             <h6 class="card-title">Edit Main Thambnail Image </h6>
 
 
-                            <form method="post" action="#" id="myForm" enctype="multipart/form-data">
+                            <form method="post" action="{{ route('property.thambnail.update', $property->id) }}" id="myForm" enctype="multipart/form-data">
                                 @csrf
 
                                 <input type="hidden" name="id" value="{{ $property->id }}">
@@ -398,9 +399,9 @@
                             <h6 class="card-title">Edit Multi Image </h6>
 
 
-                            <form method="post" action="#" id="myForm" enctype="multipart/form-data">
+                            <form method="post" action="{{ route('property.multi_image.update') }}" id="myForm" enctype="multipart/form-data">
                                 @csrf
-
+                                
 
                                 <div class="table-responsive">
                                     <table class="table table-striped">
@@ -432,7 +433,7 @@
                                                         <input type="submit" class="btn btn-primary px-4"
                                                             value="Update Image">
 
-                                                        <a href="#" class="btn btn-danger" id="delete">Delete
+                                                        <a href="{{ route('property.multi_image.delete', $img->id) }}" class="btn btn-danger" id="delete">Delete
                                                         </a>
                                                     </td>
                                                 </tr>
@@ -445,7 +446,7 @@
                             </form>
 
 
-                            <form method="post" action="#" id="myForm" enctype="multipart/form-data">
+                            <form method="post" action="{{ route('property.multi_image.store') }}" id="myForm" enctype="multipart/form-data">
                                 @csrf
 
                                 <input type="hidden" name="imageid" value="{{ $property->id }}">
@@ -487,7 +488,7 @@
                             <h6 class="card-title">Edit Property Facility </h6>
 
 
-                            <form method="post" action="#" id="myForm" enctype="multipart/form-data">
+                            <form method="post" action="{{ route('property.facility.update') }}" id="myForm" enctype="multipart/form-data">
                                 @csrf
 
                                 <input type="hidden" name="id" value="{{ $property->id }}">

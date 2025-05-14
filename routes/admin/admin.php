@@ -45,8 +45,12 @@ Route::middleware(['auth', 'verified','roleMiddleware:admin'])->group(function (
         Route::get('/property/create', 'PropertyCreate')->name('backend.property.create');
         Route::post('/property/store', 'PropertyStore')->name('backend.property.store');
         Route::get('/property/edit/{id}', 'PropertyEdit')->name('backend.property.edit');
-        // Route::post('/property/update/{id}', 'PropertyUpdate')->name('backend.property.update');
-        // Route::get('/property/delete/{id}', 'PropertyDelete')->name('backend.property.delete');
+        Route::post('/property/update/{id}', 'PropertyUpdate')->name('backend.property.update');
+        Route::post('/property/thambnail/{id}', 'PropertyThambnailUpdate')->name('property.thambnail.update');
+        Route::post('/property/multi_image/', 'PropertyMultiImage')->name('property.multi_image.update');
+        Route::get('/property/multi_image/delete/{id}', 'PropertyMultiImageDelete')->name('property.multi_image.delete');
+        Route::post('/property/multi_image/new', 'PropertyMultiImageAdd')->name('property.multi_image.store');
+        Route::post('/property/facility/update/', 'PropertyFacilityUpdate')->name('property.facility.update');
     });
 
 });
