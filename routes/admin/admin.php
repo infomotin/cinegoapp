@@ -59,5 +59,5 @@ Route::middleware(['auth', 'verified','roleMiddleware:admin'])->group(function (
 
 });
 Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login')->middleware(RedirectIfAuthenticated::class);
-Route::post('/admin/login', [AdminController::class, 'AdminSubmit'])->name('admin.login.submit')->middleware(RedirectIfAuthenticated::class);
+Route::post('/admin/login', [AdminController::class, 'AdminSubmit'])->name('admin.login.submit');
  
