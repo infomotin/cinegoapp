@@ -7,8 +7,11 @@ use App\Http\Middleware\RedirectIfAuthenticated;
 
 Route::middleware(['auth', 'verified','roleMiddleware:agent'])->group(function () {
     Route::get('/agent/dashboard', [AgentController::class, 'AgentDashboard'])->name('agent.dashboard');
-    //agent.logout
     Route::get('/agent/logout', [AgentController::class, 'AgentLogout'])->name('agent.logout');
+    Route::get('/agent/profile', [AgentController::class, 'AgentProfile'])->name('agent.profile');
+    Route::post('/agent/profile', [AgentController::class, 'AgentProfileUpdate'])->name('agent.profile.update');
+    Route::get('/agent/password', [AgentController::class, 'AgentChangePassword'])->name('agent.change.password');
+    Route::post('/agent/password/submit', [AgentController::class, 'AgentChangePasswordSubmit'])->name('agent.change.password.submit');
 });
 
 

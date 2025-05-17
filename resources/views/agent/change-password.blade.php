@@ -1,6 +1,6 @@
 @extends('agent.dashboard')
 @section('content')
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
     <div class="page-content">
 
         <div class="row">
@@ -29,25 +29,9 @@
                         <ul class="d-flex align-items-center m-0 p-0">
                             <li class="d-flex align-items-center active">
                                 <i class="me-1 icon-md text-primary" data-feather="columns"></i>
-                                <a class="pt-1px d-none d-md-block text-primary" href="{{ route('agent.profile') }}">Timeline</a>
+                                <a class="pt-1px d-none d-md-block text-primary" href="{{ route('agent.change.password') }}">Change Password</a>
                             </li>
-                            <li class="ms-3 ps-3 border-start d-flex align-items-center">
-                                <i class="me-1 icon-md" data-feather="user"></i>
-                                <a class="pt-1px d-none d-md-block text-body" href="{{ route('agent.change.password') }}">Change Password</a>
-                            </li>
-                            <li class="ms-3 ps-3 border-start d-flex align-items-center">
-                                <i class="me-1 icon-md" data-feather="users"></i>
-                                <a class="pt-1px d-none d-md-block text-body" href="#">Friends <span
-                                        class="text-muted tx-12">3,765</span></a>
-                            </li>
-                            <li class="ms-3 ps-3 border-start d-flex align-items-center">
-                                <i class="me-1 icon-md" data-feather="image"></i>
-                                <a class="pt-1px d-none d-md-block text-body" href="#">Photos</a>
-                            </li>
-                            <li class="ms-3 ps-3 border-start d-flex align-items-center">
-                                <i class="me-1 icon-md" data-feather="video"></i>
-                                <a class="pt-1px d-none d-md-block text-body" href="#">Videos</a>
-                            </li>
+                           
                         </ul>
                     </div>
                 </div>
@@ -114,9 +98,9 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <h6 class="card-title">Edit Profile Information</h6>
+                            <h6 class="card-title">Change Password</h6>
 
-                            <form class="forms-sample" action="{{ route('agent.profile.update') }}" method="POST" enctype="multipart/form-data">
+                            <form class="forms-sample" action="{{ route('agent.change.password.submit') }}" method="POST" >
                                 @csrf
                                 <div class="mb-3">
                                     <label for="exampleInputUsername1" class="form-label">Username</label>
@@ -138,16 +122,19 @@
                                     
                                 </div>
                                 <div class="mb-3">
-                                    <label for="exampleInputName1" class="form-label">Address</label>
-                                    <input type="text" class="form-control" id="exampleInputName1" autocomplete="off" readonly
-                                        aria-describedby="nameHelp" value="{{ $user->city_name . ', ' . $user->street_name . ', ' . $user->landmark . ', ' . $user->country_name }}" >
-                                    
+                                    <label for="exampleInputName1" class="form-label">Current Password</label>
+                                    <input type="text" class="form-control" id="exampleInputName1" autocomplete="off"
+                                        aria-describedby="nameHelp" id="old_password" name="old_password" placeholder="Current Password">
                                 </div>
-
                                 <div class="mb-3">
-                                    <label for="photo" class="form-label">Photo</label>
-                                    <input type="file" class="form-control" id="photo" name="photo" accept="image/*">
-                                    <img id="showImage" class="mt-2" src="{{ !$user->photo ? asset('upload/no_image.jpg') : asset( $user->photo) }}" alt="User Image" style="width: 100px; height: 100px;">
+                                    <label for="exampleInputName1" class="form-label">New Password</label>
+                                    <input type="text" class="form-control" id="exampleInputName1" autocomplete="off"
+                                        aria-describedby="nameHelp" id="new_password" name="new_password" placeholder="New Password">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleInputName1" class="form-label">Confirm Password</label>
+                                    <input type="text" class="form-control" id="exampleInputName1" autocomplete="off"
+                                        aria-describedby="nameHelp" name="password_confirmation" name="password_confirmation" placeholder="Confirm Password">
                                 </div>
                                 
                                 <button type="submit" class="btn btn-primary me-2">Submit</button>
@@ -226,98 +213,14 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-12 grid-margin">
-                        <div class="card rounded">
-                            <div class="card-body">
-                                <h6 class="card-title">suggestions for you</h6>
-                                <div class="d-flex justify-content-between mb-2 pb-2 border-bottom">
-                                    <div class="d-flex align-items-center hover-pointer">
-                                        <img class="img-xs rounded-circle" src="https://placehold.co/37x37.png"
-                                            alt="">
-                                        <div class="ms-2">
-                                            <p>Mike Popescu</p>
-                                            <p class="tx-11 text-muted">12 Mutual Friends</p>
-                                        </div>
-                                    </div>
-                                    <button class="btn btn-icon border-0"><i data-feather="user-plus"></i></button>
-                                </div>
-                                <div class="d-flex justify-content-between mb-2 pb-2 border-bottom">
-                                    <div class="d-flex align-items-center hover-pointer">
-                                        <img class="img-xs rounded-circle" src="https://placehold.co/37x37.png"
-                                            alt="">
-                                        <div class="ms-2">
-                                            <p>Mike Popescu</p>
-                                            <p class="tx-11 text-muted">12 Mutual Friends</p>
-                                        </div>
-                                    </div>
-                                    <button class="btn btn-icon border-0"><i data-feather="user-plus"></i></button>
-                                </div>
-                                <div class="d-flex justify-content-between mb-2 pb-2 border-bottom">
-                                    <div class="d-flex align-items-center hover-pointer">
-                                        <img class="img-xs rounded-circle" src="https://placehold.co/37x37.png"
-                                            alt="">
-                                        <div class="ms-2">
-                                            <p>Mike Popescu</p>
-                                            <p class="tx-11 text-muted">12 Mutual Friends</p>
-                                        </div>
-                                    </div>
-                                    <button class="btn btn-icon border-0"><i data-feather="user-plus"></i></button>
-                                </div>
-                                <div class="d-flex justify-content-between mb-2 pb-2 border-bottom">
-                                    <div class="d-flex align-items-center hover-pointer">
-                                        <img class="img-xs rounded-circle" src="https://placehold.co/37x37.png"
-                                            alt="">
-                                        <div class="ms-2">
-                                            <p>Mike Popescu</p>
-                                            <p class="tx-11 text-muted">12 Mutual Friends</p>
-                                        </div>
-                                    </div>
-                                    <button class="btn btn-icon border-0"><i data-feather="user-plus"></i></button>
-                                </div>
-                                <div class="d-flex justify-content-between mb-2 pb-2 border-bottom">
-                                    <div class="d-flex align-items-center hover-pointer">
-                                        <img class="img-xs rounded-circle" src="https://placehold.co/37x37.png"
-                                            alt="">
-                                        <div class="ms-2">
-                                            <p>Mike Popescu</p>
-                                            <p class="tx-11 text-muted">12 Mutual Friends</p>
-                                        </div>
-                                    </div>
-                                    <button class="btn btn-icon border-0"><i data-feather="user-plus"></i></button>
-                                </div>
-                                <div class="d-flex justify-content-between">
-                                    <div class="d-flex align-items-center hover-pointer">
-                                        <img class="img-xs rounded-circle" src="https://placehold.co/37x37.png"
-                                            alt="">
-                                        <div class="ms-2">
-                                            <p>Mike Popescu</p>
-                                            <p class="tx-11 text-muted">12 Mutual Friends</p>
-                                        </div>
-                                    </div>
-                                    <button class="btn btn-icon border-0"><i data-feather="user-plus"></i></button>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
             <!-- right wrapper end -->
         </div>
 
     </div>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#photo').change(function (e) {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    $('#showImage').attr('src', e.target.result);
-                }
-                reader.readAsDataURL(e.target.files[0]);
-            });
-        });
-
-    </script>
+    
 
 
 @endsection

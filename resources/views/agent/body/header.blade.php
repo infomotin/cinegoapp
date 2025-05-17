@@ -5,6 +5,11 @@
     <div class="navbar-content">
         
         <ul class="navbar-nav">
+            @php 
+                $user = Auth::user()->id;
+                $user = \App\Models\User::find($user);
+                
+            @endphp
             
             
             <li class="nav-item dropdown">
@@ -21,7 +26,7 @@
                         <a href="javascript:;" class="dropdown-item d-flex align-items-center py-2">
                             <div class="me-3">
                                 <img class="wd-30 ht-30 rounded-circle"
-                                    src="https://via.placeholder.com/30x30" alt="userr">
+                                    src="{{ !$user->photo ? asset('upload/no_image.jpg') : asset( $user->photo) }}" alt="userr">
                             </div>
                             <div class="d-flex justify-content-between flex-grow-1">
                                 <div class="me-4">
@@ -163,37 +168,37 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button"
                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img class="wd-30 ht-30 rounded-circle" src="https://via.placeholder.com/30x30"
+                    <img class="wd-30 ht-30 rounded-circle" src="{{ !$user->photo ? asset('upload/no_image.jpg') : asset( $user->photo) }}"
                         alt="profile">
                 </a>
                 <div class="dropdown-menu p-0" aria-labelledby="profileDropdown">
                     <div class="d-flex flex-column align-items-center border-bottom px-5 py-3">
                         <div class="mb-3">
                             <img class="wd-80 ht-80 rounded-circle"
-                                src="https://via.placeholder.com/80x80" alt="">
+                                src="{{ !$user->photo ? asset('upload/no_image.jpg') : asset( $user->photo) }}" alt="">
                         </div>
                         <div class="text-center">
-                            <p class="tx-16 fw-bolder">Amiah Burton</p>
-                            <p class="tx-12 text-muted">amiahburton@gmail.com</p>
+                            <p class="tx-16 fw-bolder">{{ $user->name }}</p>
+                            <p class="tx-12 text-muted">{{ $user->email }}</p>
                         </div>
                     </div>
                     <ul class="list-unstyled p-1">
                         <li class="dropdown-item py-2">
-                            <a href="pages/general/profile.html" class="text-body ms-0">
+                            <a href="#" class="text-body ms-0">
                                 <i class="me-2 icon-md" data-feather="user"></i>
                                 <span>Profile</span>
                             </a>
                         </li>
                         <li class="dropdown-item py-2">
-                            <a href="javascript:;" class="text-body ms-0">
+                            <a href="{{ route('agent.profile') }}" class="text-body ms-0">
                                 <i class="me-2 icon-md" data-feather="edit"></i>
-                                <span>Edit Profile</span>
+                                <span>Update Profile</span>
                             </a>
                         </li>
                         <li class="dropdown-item py-2">
-                            <a href="javascript:;" class="text-body ms-0">
+                            <a href="{{ route('agent.change.password') }}" class="text-body ms-0">
                                 <i class="me-2 icon-md" data-feather="repeat"></i>
-                                <span>Switch User</span>
+                                <span>Change Password</span>
                             </a>
                         </li>
                         <li class="dropdown-item py-2">
