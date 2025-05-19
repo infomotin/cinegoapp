@@ -17,8 +17,8 @@
                         <div
                             class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                             <div class="btn-group me-2">
-                                <a href="{{ route('admin.backend.amenities.create') }}" class="btn btn-primary">Add
-                                    Amenities</a>
+                                <a href="{{ route('admin.backend.user.create') }}" class="btn btn-primary">Add
+                                    Agent</a>
                             </div>
                         </div>
                         <div class="table-responsive">
@@ -26,7 +26,12 @@
                                 <thead>
                                     <tr>
                                         <th>SL</th>
+                                        <th>Image</th>
                                         <th>User Name</th>
+                                        <th>Email</th>
+                                        <th>Role</th>
+                                        <th>Phone</th>
+                                        <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -34,9 +39,20 @@
                                     @foreach ($users as $key => $amenitie)
                                         <tr>
                                             <td>{{ $key + 1 }}</td>
+                                            <td><img src="{{ !$amenitie->photo ? asset('upload/no_image.jpg') : asset( $amenitie->photo) }}" alt="icon" width="50">
                                             <td>{{ $amenitie->name }}</td>
-
+                                            <td>{{ $amenitie->email }}</td>
+                                            <td>{{ $amenitie->role }}</td>
+                                            <td>{{ $amenitie->phone }}</td>
+                                            <td>
+                                                @if ($amenitie->status == 'active')
+                                                    <span class="badge rounded-pill bg-success">Active</span>
+                                                @else
+                                                    <span class="badge rounded-pill bg-danger">InActive</span>
+                                                @endif
                                             </td>
+
+                                            
 
                                             <td>
                                                 <a href="{{ route('admin.backend.amenities.edit', $amenitie->id) }}"

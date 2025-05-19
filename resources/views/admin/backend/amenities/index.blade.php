@@ -36,7 +36,7 @@
                                             <td>{{ $key + 1 }}</td>
                                             <td>{{ $amenitie->amenities_name }}</td>
 
-                                            </td>
+                                           
 
                                             <td>
                                                 <a href="{{ route('admin.backend.amenities.edit', $amenitie->id) }}"

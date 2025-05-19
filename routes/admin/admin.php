@@ -5,8 +5,9 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\Backend\PropertyTypeController;
 use App\Http\Controllers\Admin\Backend\AmenitieController;
 use App\Http\Controllers\Backend\PropertyController;
-use App\Http\Controllers\Admin\Backend\AllUserController;
+
 use App\Http\Middleware\RedirectIfAuthenticated;
+use App\Http\Controllers\Admin\Backend\AllUserController;
 
 
 Route::middleware(['auth', 'verified','roleMiddleware:admin'])->group(function () {
@@ -59,9 +60,10 @@ Route::middleware(['auth', 'verified','roleMiddleware:admin'])->group(function (
     });
     //AllUserController
     Route::controller(AllUserController::class)->group(function () {
-        Route::get('/admin/users', 'AllUserIndex')->name('admin.backend.users.index');
-        // Route::get('/admin/users/create', 'AllUserCreate')->name('admin.backend.users.create');
-        // Route::post('/admin/users/store', 'AllUserStore')->name('admin.backend.users.store');
+        Route::get('/admin/all/users', 'AllUserIndex')->name('admin.backend.users.index');
+        Route::post('/admin/users/active/inactive/{id}', 'AllUserActiveInactive')->name('admin.backend.users.status');
+        Route::get('/admin/users/create', 'AllUserCreate')->name('admin.backend.user.create');
+        Route::post('/admin/users/store', 'AllUserStore')->name('admin.backend.users.store');
         // Route::get('/admin/users/edit/{id}', 'AllUserEdit')->name('admin.backend.users.edit');
         // Route::post('/admin/users/update/{id}', 'AllUserUpdate')->name('admin.backend.users.update');
         // Route::get('/admin/users/delete/{id}', 'AllUserDelete')->name('admin.backend.users.delete');
