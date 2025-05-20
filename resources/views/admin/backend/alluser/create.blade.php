@@ -1,7 +1,7 @@
 @extends('admin.dashboard')
 @section('content')
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <div class="page-content">
 
         <nav class="page-breadcrumb">
@@ -24,9 +24,34 @@
                             </div>
                         </div>
                         <form class="forms-sample" method="POST" action="{{ route('admin.backend.users.store') }}"
-                            id="myForm">
+                            id="myForm" enctype="multipart/form-data">
                             @csrf
-                            
+                            <div class="form-group me-2 mb-3">
+                                <label for="exampleInputName1">Agent Company Name</label>
+                                <input type="text" class="form-control" id="name" name="name"
+                                    placeholder="Agent Company Name">
+                            </div>
+                            <div class="form-group me-2 mb-3">
+                                <label for="exampleInputName1">Agent User Name</label>
+                                <input type="text" class="form-control" id="username" name="username"
+                                    placeholder="Agent User Name">
+                            </div>
+                            <div class="form-group me-2 mb-3">
+                                <label for="exampleInputName1">Agent Phone</label>
+                                <input type="number" class="form-control" id="phone" name="phone"
+                                    placeholder="Agent Phone">
+                            </div>
+                            <div class="form-group me-2 mb-3">
+                                <label for="exampleInputName1">Agent Email</label>
+                                <input type="email" class="form-control" id="email" name="email"
+                                    placeholder="Agent Email">
+                            </div>
+                            <div class="form-group me-2 mb-3">
+                                <label for="photo" class="form-label">Photo</label>
+                                    <input type="file" class="form-control" id="photo" name="photo" accept="image/*">
+                                    <img id="showImage" class="mt-2" src="{{ asset('upload/no_image.jpg') }}" alt="User Image" style="width: 100px; height: 100px;">
+
+                            </div>
 
                             <button type="submit" class="btn btn-primary me-2">Submit</button>
                             <button class="btn btn-light">Cancel</button>
@@ -40,15 +65,37 @@
         $(document).ready(function() {
             $('#myForm').validate({
                 rules: {
-                    amenities_name: {
+                    name: {
+                        required: true,
+                    },
+                    username: {
+                        required: true,
+                    },
+                    phone: {
+                        required: true,
+                    },
+                    email: {
                         required: true,
                     },
 
+
+
                 },
                 messages: {
-                    amenities_name: {
-                        required: 'Please Enter amenities Name',
+                    name: {
+                        required: 'Please Enter Company  Name',
                     },
+                    username: {
+                        required: 'Please Enter User Name',
+                    },
+                    phone: {
+                        required: 'Please Enter Phone',
+                    },
+                    email: {
+                        required: 'Please EnterEmail',
+                    },
+
+
 
 
                 },
@@ -63,6 +110,17 @@
                 unhighlight: function(element, errorClass, validClass) {
                     $(element).removeClass('is-invalid');
                 },
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#photo').change(function(e) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#showImage').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(e.target.files['0']);
             });
         });
     </script>
