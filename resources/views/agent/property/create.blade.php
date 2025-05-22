@@ -17,7 +17,7 @@
                             <h6 class="card-title">Add Property </h6>
 
 
-                            <form method="post" action="{{ route('backend.property.store') }}" id="myForm" enctype="multipart/form-data">
+                            <form method="post" action="{{ route('agent.property.store') }}" id="myForm" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
                                     <div class="col-sm-6">

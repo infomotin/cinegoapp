@@ -1,4 +1,4 @@
-@extends('admin.dashboard')
+@extends('agent.dashboard')
 @section('content')
     <div class="page-content">
 
@@ -17,7 +17,7 @@
                         <div
                             class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                             <div class="btn-group me-2">
-                                <a href="{{ route('backend.property.create') }}" class="btn btn-primary">Add Property
+                                <a href="{{ route('agent.property.create') }}" class="btn btn-primary">Add Property
                                 </a>
                             </div>
                         </div>
@@ -59,11 +59,11 @@
 
                                                 <td>
 
-                                                    <a href="{{ route('agent.property.edit', $item->id) }}" class="btn btn-inverse-info" title="Details"> <i
+                                                    <a href="{{ route('agent.property.details', $item->id) }}" class="btn btn-inverse-info" title="Details"> <i
                                                             data-feather="eye"></i>
                                                     </a>
 
-                                                    <a href="{{ route('backend.property.edit', $item->id) }}" class="btn btn-inverse-warning" title="Edit"> <i
+                                                    <a href="{{ route('agent.property.edit', $item->id) }}" class="btn btn-inverse-warning" title="Edit"> <i
                                                             data-feather="edit"></i> </a>
 
                                                     <a href="#" class="btn btn-inverse-danger" id="delete"

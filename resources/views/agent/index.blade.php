@@ -1,9 +1,13 @@
 @extends('agent.dashboard') 
 @section('content')
-
+@php 
+    $id = Auth::user()->id;
+    $status = DB::table('users')->where('id', $id)->value('status');
+    
+@endphp 
 <div class="page-content">
-
-    <div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
+    @if($status == 'active')
+        <div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
         <div>
             <h4 class="mb-3 mb-md-0">Welcome to Dashboard agent </h4>
         </div>
@@ -240,6 +244,22 @@
             </div>
         </div>
     </div> <!-- row -->
+    @else 
+
+    <div class="d-flex justify-content-center align-items-center vh-100">
+        <div class="text-center">
+            <h1 class="display-1 fw-bold">404</h1>
+            <p class="fs-3"> <span class="text-danger">Opps!</span> Page not found.</p>
+            <p class="lead">
+                Agent Account is not active, please contact admin.
+            </p>
+            <a href="#" class="btn btn-primary">Go Home</a>
+        </div>
+    </div>
+
+    @endif
+
+    
 
     
 

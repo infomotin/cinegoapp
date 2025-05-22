@@ -53,7 +53,7 @@
 
                             </div>
 
-                            <button type="submit" class="btn btn-primary me-2">Submit</button>
+                            <button type="submit" class="btn btn-primary me-2">Register Agent</button>
                             <button class="btn btn-light">Cancel</button>
                         </form>
                     </div>

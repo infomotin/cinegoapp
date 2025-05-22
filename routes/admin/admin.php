@@ -61,13 +61,13 @@ Route::middleware(['auth', 'verified','roleMiddleware:admin'])->group(function (
     //AllUserController
     Route::controller(AllUserController::class)->group(function () {
         Route::get('/admin/all/users', 'AllUserIndex')->name('admin.backend.users.index');
-        Route::post('/admin/users/active/inactive/{id}', 'AllUserActiveInactive')->name('admin.backend.users.status');
+        Route::get('/update-user-status','changeStatus');
         Route::get('/admin/users/create', 'AllUserCreate')->name('admin.backend.user.create');
         Route::post('/admin/users/store', 'AllUserStore')->name('admin.backend.users.store');
-        // Route::get('/admin/users/edit/{id}', 'AllUserEdit')->name('admin.backend.users.edit');
-        // Route::post('/admin/users/update/{id}', 'AllUserUpdate')->name('admin.backend.users.update');
-        // Route::get('/admin/users/delete/{id}', 'AllUserDelete')->name('admin.backend.users.delete');
-        // Route::get('/admin/users/status/{id}', 'AllUserStatus')->name('admin.backend.users.status');
+        Route::get('/admin/users/edit/{id}', 'AllUserEdit')->name('admin.backend.user.edit');
+        Route::post('/admin/users/update/{id}', 'AllUserUpdate')->name('admin.backend.users.update');
+        Route::get('/admin/users/delete/{id}', 'AllUserDelete')->name('admin.backend.users.delete');
+       
         // Route::get('/admin/users/restore/{id}', 'AllUserRestore')->name('admin.backend.users.restore');
         // Route::get('/admin/users/force/delete/{id}', 'AllUserForceDelete')->name('admin.backend.users.force.delete');
     });

@@ -18,7 +18,7 @@
     <!-- End fonts -->
     
     <!-- core:css -->
-    <link rel="stylesheet" href="{{ asset('assets/vendors/datatables.net-bs5/dataTables.bootstrap5.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('assets/vendors/datatables.net-bs5/dataTables.bootstrap5.css') }}"> --}}
     <link rel="stylesheet" href="{{ asset('assets/vendors/core/core.css') }}">
     <!-- endinject -->
     <link rel="stylesheet" href="{{ asset('assets/vendors/select2/select2.min.css')}}">
@@ -54,9 +54,9 @@
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="{{ asset('assets/vendors/datatables.net/jquery.dataTables.js') }}"></script>
-    <script src="{{ asset('assets/vendors/datatables.net-bs5/dataTables.bootstrap5.js') }}"></script>
-    <script src="{{ asset('assets/js/data-table.js') }}"></script>
+    {{-- <script src="{{ asset('assets/vendors/datatables.net/jquery.dataTables.js') }}"></script>
+    <script src="{{ asset('assets/vendors/datatables.net-bs5/dataTables.bootstrap5.js') }}"></script> --}}
+    {{-- <script src="{{ asset('assets/js/data-table.js') }}"></script> --}}
 
     <!-- core:js -->
     <script src="{{ asset('assets/vendors/core/core.js') }}"></script>
@@ -106,6 +106,7 @@
 	<!-- End custom js for this page -->
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
 <script>
     @if(Session::has('message'))

@@ -23,12 +23,12 @@ class AllUserController extends Controller
         return view('admin.backend.alluser.index',compact('users'));
     }
     //AllUserActiveInactive
-    public function AllUserActiveInactive($id)
+    public function ChangeStatus(Request $request)
     {
-        $user = User::find($id);
-        $user->status = $user->status == 1 ? 0 : 1;
+        $user = User::find($request->user_id);
+        $user->status = $user->status == 'active' ? 'inactive' : 'active';
         $user->save();
-        return back();
+        return response()->json(['success' => 'Status change successfully.']);
     }
     //AllUserCreate
     public function AllUserCreate()
@@ -71,6 +71,49 @@ class AllUserController extends Controller
         
         $notification = array(
             'message' => 'User Create successful',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('admin.backend.users.index')->with($notification);
+    }
+    //AllUserEdit
+    public function AllUserEdit($id)
+    {
+        $user = User::find($id);
+        return view('admin.backend.alluser.edit',compact('user'));
+    }
+    //AllUserUpdate
+    public function AllUserUpdate(Request $request,$id)
+    {
+        //Image Upload
+        if ($request->hasFile('photo')) {
+            $photo = $request->file('photo');
+            $photoName = 'agent/images/' . date('YmdHi') . '.' . $photo->getClientOriginalExtension();
+            $photo->move(public_path('agent/images/'), $photoName);
+        }
+        $user = User::find($id);
+        $user->name = $request->name;
+        $user->username = $request->username;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->photo = $photoName;
+        $user->save();
+        $notification = array(
+            'message' => 'User Update successful',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('admin.backend.users.index')->with($notification);
+    }
+    //AllUserDelete
+    public function AllUserDelete($id)
+    {
+        $user = User::find($id);
+        //remove photo
+        if ($user->photo) {
+            unlink(public_path('agent/images/' . $user->photo));
+        }
+        $user->delete();
+        $notification = array(
+            'message' => 'User Delete successful',
             'alert-type' => 'success'
         );
         return redirect()->route('admin.backend.users.index')->with($notification);

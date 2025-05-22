@@ -1,9 +1,13 @@
+@php 
+    $id = Auth::user()->id;
+    $status = DB::table('users')->where('id', $id)->value('status');
+@endphp 
 <nav class="navbar">
     <a href="#" class="sidebar-toggler">
         <i data-feather="menu"></i>
     </a>
     <div class="navbar-content">
-        
+        @if( $status == 'active')
         <ul class="navbar-nav">
             @php 
                 $user = Auth::user()->id;
@@ -211,5 +215,14 @@
                 </div>
             </li>
         </ul>
+        @else
+        <p class="fs-4" style="text-align: center">Account is not active, please contact admin.</p>
+        <a href="{{ route('agent.logout') }}" class="text-body ms-0">
+                                <i class="me-2 icon-md" data-feather="log-out"></i>
+                                <span>Log Out</span>
+                            </a>
+        @endif
+
+
     </div>
 </nav>

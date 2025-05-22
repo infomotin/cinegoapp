@@ -1,7 +1,9 @@
 @extends('admin.dashboard')
 @section('content')
+    {{-- add toggle main css cdn  --}}
+    <link rel="stylesheet" href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css">
+    
     <div class="page-content">
-
         <nav class="page-breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">All User </a></li>
@@ -32,6 +34,7 @@
                                         <th>Role</th>
                                         <th>Phone</th>
                                         <th>Status</th>
+                                        <th>change</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -39,7 +42,8 @@
                                     @foreach ($users as $key => $amenitie)
                                         <tr>
                                             <td>{{ $key + 1 }}</td>
-                                            <td><img src="{{ !$amenitie->photo ? asset('upload/no_image.jpg') : asset( $amenitie->photo) }}" alt="icon" width="50">
+                                            <td><img src="{{ !$amenitie->photo ? asset('upload/no_image.jpg') : asset($amenitie->photo) }}"
+                                                    alt="icon" width="50">
                                             <td>{{ $amenitie->name }}</td>
                                             <td>{{ $amenitie->email }}</td>
                                             <td>{{ $amenitie->role }}</td>
@@ -51,15 +55,19 @@
                                                     <span class="badge rounded-pill bg-danger">InActive</span>
                                                 @endif
                                             </td>
+                                            <td>
+                                                <input type="checkbox" class="toggle-class" data-id="{{ $amenitie->id }}" 
+                                                data-onstyle="success" data-offstyle="danger" data-on="Active" data-off="InActive" 
+                                                {{ $amenitie->status == 'active' ? 'checked' : '' }}>
+                                            </td>
 
-                                            
 
                                             <td>
-                                                <a href="{{ route('admin.backend.amenities.edit', $amenitie->id) }}"
+                                                <a href="{{ route('admin.backend.user.edit', $amenitie->id) }}"
                                                     type="button" class="btn btn-primary btn-icon-text">
                                                     Edit
                                                 </a>
-                                                <a href="{{ route('admin.backend.amenities.delete', $amenitie->id) }}"
+                                                <a href="{{ route('admin.backend.users.delete', $amenitie->id) }}"
                                                     type="button" class="btn btn-danger btn-icon-text" id="delete">
                                                     Delete
                                                 </a>
@@ -75,10 +83,26 @@
         </div>
 
     </div>
-
-    <script>
+    <script type="text/javascript">
         $(document).ready(function() {
-            $('#dataTableExample').DataTable();
-        });
+            $('.toggle-class').change(function() {
+                var status = $(this).prop('checked') == true ? 1 : 0;
+                var user_id = $(this).data('id');
+                $.ajax({
+                    type: "GET",
+                    dataType: "json",
+                    url: '/update-user-status',
+                    data: {
+                        'status': status,
+                        'user_id': user_id
+                    },
+                    success: function(data) {
+                        console.log(data.success)
+                    }
+                });
+            })
+        })
     </script>
+
+    
 @endsection
