@@ -28,6 +28,14 @@ Route::middleware(['auth', 'verified', 'roleMiddleware:agent'])->group(function 
         Route::get('/agent/property/delete/{id}', 'AgentPropertyShow')->name('agent.property.details');
         Route::post('/agent/property/inactive/', 'AgentPropertyInactive')->name('agent.property.inactive');
         Route::post('/agent/property/active/', 'AgentPropertyActive')->name('agent.property.active');
+        
+        
+    });
+    Route::controller(AgentPropertyController::class)->group(function () {
+        //buy package
+        Route::get('/agent/buy/package', 'AgentBuyPackage')->name('agent.buy.package');
+        //agent.package.buy
+        Route::get('/agent/package/buy/{package_name}', 'AgentPackageBuy')->name('agent.package.buy');
     });
 });
 

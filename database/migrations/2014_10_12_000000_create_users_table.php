@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('username')->unique();
             $table->string('phone')->unique();
+            $table->string('credit')->default(0);
             //address 
             $table->string('city_name')->nullable();
             $table->string('street_name')->nullable();

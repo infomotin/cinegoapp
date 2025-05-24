@@ -15,34 +15,54 @@ use App\Models\Admin\Backend\Amenities;
 use Carbon\Carbon;
 use Intervention\Image\Facades\Image;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
+use Illuminate\Support\Facades\DB;
 
 class AgentPropertyController extends Controller
 {
     //AgentPropertyIndex
-    public function AgentPropertyIndex(){
-       // Get the authenticated user
+    public function AgentPropertyIndex()
+    {
+        // Get the authenticated user
         $id = Auth::user()->id;
-        $user = User::find($id); 
+        $user = User::find($id);
         $properties = Property::where('agent_id', $id)->latest()->get();
-        return view('agent.property.index',compact('properties'));
+        return view('agent.property.index', compact('properties'));
     }
     //AgentPropertyCreate
-    public function AgentPropertyCreate(){
+    public function AgentPropertyCreate()
+    {
         $id = Auth::user()->id;
         $property_types = PropertyType::all();
         $amenities = Amenities::all();
         $agents = User::where('role', 'agent')->where('status', 'active')->where('id', $id)->get();
-        return view('agent.property.create',compact('property_types','amenities','agents'));
+
+        $user = User::where('role', 'agent')->where('id', $id)->first();
+        $user_cradit = $user->credit;
+        // dd($user_cradit);
+        if ($user_cradit == 1) {
+            $notification = array(
+                'message' => 'You Don\'t Have Enough Credit',
+                'alert-type' => 'error'
+            );
+            return redirect()->route('agent.buy.package')->with($notification);
+        }else{
+            return view('agent.property.create', compact('property_types', 'amenities', 'agents'));
+        }
+
+        
     }
     // -----------------------------------------
     //PropertyStore
     public function AgentPropertyStore(Request $request)
     {
-    //    dd($request->all());
-       $amenities = $request->amenities_id;
-       
+        //AUTHENTICATION USER ID
+        $aid = Auth::user()->id;
+        $user = User::find($aid);
+        $user_cradit = $user->credit;
+        $amenities = $request->amenities_id;
+
         $amenities_id = implode(",", $amenities);
-        // dd($amenities_id);
+        
         //property_code
         $pcode = IdGenerator::generate([
             'table' => 'properties',
@@ -52,12 +72,12 @@ class AgentPropertyController extends Controller
             'reset_on_prefix_change' => true
         ]);
 
-       $image = $request->file('property_thambnail');
-       $imane_name = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
-       Image::make($image)->resize(370, 250)->save('upload/property/thambnail/'.$imane_name);
-       $save_url = 'upload/property/thambnail/'.$imane_name;
-        
-       $property_id = Property::insertGetId([
+        $image = $request->file('property_thambnail');
+        $imane_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+        Image::make($image)->resize(370, 250)->save('upload/property/thambnail/' . $imane_name);
+        $save_url = 'upload/property/thambnail/' . $imane_name;
+
+        $property_id = Property::insertGetId([
             'ptype_id' => $request->ptype_id,
             'amenities_id' => $amenities_id,
             'property_name' => $request->property_name,
@@ -88,7 +108,7 @@ class AgentPropertyController extends Controller
             'country_name' => $request->country_name,
             'zip_code' => $request->zip_code,
             'street_address' => $request->street_address,
-            'street_address2' => $request->street_address2, 
+            'street_address2' => $request->street_address2,
             'neighborhood' => $request->neighborhood,
             'latitude' => $request->latitude,
             'longitude' => $request->longitude,
@@ -138,16 +158,19 @@ class AgentPropertyController extends Controller
         //MultiImage
         if ($request->file('multi_img')) {
             foreach ($request->file('multi_img') as $image) {
-                $image_name = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
-                Image::make($image)->resize(750, 520)->save('upload/property/multi_image/'.$image_name);
+                $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+                Image::make($image)->resize(750, 520)->save('upload/property/multi_image/' . $image_name);
                 MultiImageProperty::insert([
                     'property_id' => $property_id,
-                    'photo_name' => 'upload/property/multi_image/'.$image_name,
+                    'photo_name' => 'upload/property/multi_image/' . $image_name,
                     'photo_slug' => strtolower(str_replace(' ', '-', $image_name)),
                     'created_at' => now(),
                 ]);
             }
         }
+        User::where('id', $aid)->update([
+            'credit' => DB::raw('1+' . $user_cradit),
+        ]);
         $notification = array(
             'message' => 'Property Inserted Successfully',
             'alert-type' => 'success'
@@ -165,7 +188,7 @@ class AgentPropertyController extends Controller
         $agents = User::where('role', 'agent')->where('status', 'active')->get();
         $multiImage  = MultiImageProperty::where('property_id', $id)->get();
         $facilities = FacilityProperty::where('property_id', $id)->get();
-        return view('agent.property.edit', compact('property', 'property_types', 'amenities', 'agents', 'multiImage', 'facilities','amenities_id'));
+        return view('agent.property.edit', compact('property', 'property_types', 'amenities', 'agents', 'multiImage', 'facilities', 'amenities_id'));
     }
     //PropertyUpdate
     public function AgentPropertyUpdate(Request $request, $id)
@@ -185,11 +208,15 @@ class AgentPropertyController extends Controller
         //     'address' => 'required',
         // ]);
         // dd($request->all());
+
+
+
+
         $property = Property::findOrFail($id);
         $property->ptype_id = $request->ptype_id;
         $property->amenities_id = implode(",", $request->amenities_id);
         $property->property_name = $request->property_name;
-        $property->property_slug = strtolower(str_replace(' ', '-', $request->property_name)); 
+        $property->property_slug = strtolower(str_replace(' ', '-', $request->property_name));
         $property->property_status = $request->property_status;
         $property->lowest_price = $request->lowest_price;
         $property->max_price = $request->max_price;
@@ -218,7 +245,7 @@ class AgentPropertyController extends Controller
         $property->neighborhood = $request->neighborhood;
         $property->latitude = $request->latitude;
         $property->longitude = $request->longitude;
-        
+
         $property->hot = $request->hot;
         $property->featured = $request->featured;
         $property->agent_id = $request->agent_id;
@@ -245,9 +272,9 @@ class AgentPropertyController extends Controller
             unlink($old_image);
         }
         $image = request()->file('property_thambnail');
-        $imane_name = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
-        Image::make($image)->resize(370, 250)->save('upload/property/thambnail/'.$imane_name);
-        $save_url = 'upload/property/thambnail/'.$imane_name;
+        $imane_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+        Image::make($image)->resize(370, 250)->save('upload/property/thambnail/' . $imane_name);
+        $save_url = 'upload/property/thambnail/' . $imane_name;
         $property->property_thambnail = $save_url;
         $property->save();
         $notification = array(
@@ -260,25 +287,24 @@ class AgentPropertyController extends Controller
     public function AgentPropertyMultiImage(Request $request)
     {
         $image = $request->multi_img;
-        foreach ($image as $id=>$img) {
+        foreach ($image as $id => $img) {
             $imgDet = MultiImageProperty::findOrFail($id);
             $old_image = $imgDet->photo_name;
             if ($old_image) {
                 unlink($old_image);
             }
-            $image_name = hexdec(uniqid()).'.'.$img->getClientOriginalExtension();
-            Image::make($img)->resize(750, 520)->save('upload/property/multi_image/'.$image_name);
-            $save_url = 'upload/property/multi_image/'.$image_name;
+            $image_name = hexdec(uniqid()) . '.' . $img->getClientOriginalExtension();
+            Image::make($img)->resize(750, 520)->save('upload/property/multi_image/' . $image_name);
+            $save_url = 'upload/property/multi_image/' . $image_name;
             $imgDet->photo_name = $save_url;
             $imgDet->photo_slug = strtolower(str_replace(' ', '-', $image_name));
             $imgDet->save();
-        }   
+        }
         $notification = array(
             'message' => 'Property Multi Image Updated Successfully',
             'alert-type' => 'success'
         );
         return redirect()->back()->with($notification);
-        
     }
     //PropertyMultiImageDelete
     public function AgentPropertyMultiImageDelete($id)
@@ -298,9 +324,9 @@ class AgentPropertyController extends Controller
     {
         $image = $request->file('multi_img');
         foreach ($image as $img) {
-            $image_name = hexdec(uniqid()).'.'.$img->getClientOriginalExtension();
-            Image::make($img)->resize(750, 520)->save('upload/property/multi_image/'.$image_name);
-            $save_url = 'upload/property/multi_image/'.$image_name;
+            $image_name = hexdec(uniqid()) . '.' . $img->getClientOriginalExtension();
+            Image::make($img)->resize(750, 520)->save('upload/property/multi_image/' . $image_name);
+            $save_url = 'upload/property/multi_image/' . $image_name;
             MultiImageProperty::insert([
                 'property_id' => $request->property_id,
                 'photo_name' => $save_url,
@@ -346,7 +372,7 @@ class AgentPropertyController extends Controller
         $agents = User::where('role', 'agent')->where('status', 'active')->get();
         $multiImage  = MultiImageProperty::where('property_id', $id)->get();
         $facilities = FacilityProperty::where('property_id', $id)->get();
-        return view('agent.property.show', compact('property', 'property_types', 'amenities', 'agents', 'multiImage', 'facilities','amenities_id'));
+        return view('agent.property.show', compact('property', 'property_types', 'amenities', 'agents', 'multiImage', 'facilities', 'amenities_id'));
     }
     //PropertyInactive
     public function AgentPropertyInactive(Request $request)
@@ -359,7 +385,7 @@ class AgentPropertyController extends Controller
         );
         return redirect()->back()->with($notification);
     }
-    
+
     //PropertyActive
     public function AgentPropertyActive(Request $request)
     {
@@ -370,5 +396,16 @@ class AgentPropertyController extends Controller
             'alert-type' => 'success'
         );
         return redirect()->back()->with($notification);
+    }
+    //AgentBuyPackage 
+    public function AgentBuyPackage()
+    {
+        return view('agent.package.buy_package');
+    }
+    //AgentPackageBuy
+    public function AgentPackageBuy($package_name)
+    {
+        $id = Auth::user()->id;
+        return view('agent.package.buy', compact('package_name', 'id'));
     }
 }
