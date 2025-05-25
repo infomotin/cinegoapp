@@ -41,7 +41,7 @@
                                                 </tr>
                                             </table>
                                             <div class="d-grid">
-                                                <button class="btn btn-primary mt-4">Start free trial</button>
+                                                 <a class="btn btn-primary mt-4" href="{{ route('agent.package.buy', 'basic') }}"> Start Now</a>
                                             </div>
                                         </div>
                                     </div>
@@ -120,7 +120,7 @@
                                                 </tr>
                                             </table>
                                             <div class="d-grid">
-                                                <button class="btn btn-primary mt-4">Start Now</button>
+                                                <a class="btn btn-primary mt-4" href="{{ route('agent.package.buy', 'professional') }}"> Start Now</a>
                                             </div>
                                         </div>
                                     </div>

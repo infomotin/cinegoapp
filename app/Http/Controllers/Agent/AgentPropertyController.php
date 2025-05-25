@@ -12,6 +12,7 @@ use App\Models\Backend\FacilityProperty;
 use App\Models\Backend\MultiImageProperty;
 use App\Models\Admin\Backend\PropertyType;
 use App\Models\Admin\Backend\Amenities;
+use App\Models\Backend\PackagePlan;
 use Carbon\Carbon;
 use Intervention\Image\Facades\Image;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
@@ -39,7 +40,7 @@ class AgentPropertyController extends Controller
         $user = User::where('role', 'agent')->where('id', $id)->first();
         $user_cradit = $user->credit;
         // dd($user_cradit);
-        if ($user_cradit == 1) {
+        if ($user_cradit == 1 || $user_cradit == 7) {
             $notification = array(
                 'message' => 'You Don\'t Have Enough Credit',
                 'alert-type' => 'error'
@@ -406,6 +407,87 @@ class AgentPropertyController extends Controller
     public function AgentPackageBuy($package_name)
     {
         $id = Auth::user()->id;
+        
         return view('agent.package.buy', compact('package_name', 'id'));
+    }
+    //AgentPackageBuyStore
+    public function AgentPackageBuyStore(Request $request, $package_name)
+    {
+        // dd($package_name);
+        if($package_name == 'business'){
+            $id = Auth::user()->id;
+            PackagePlan::insert([
+                'user_id' => $id,
+            'package_name' => 'business',
+            'package_price' => 20,
+            'package_duration' => '3',
+            'invoice' => 'ERS'.mt_rand(10000, 99999),
+            'created_at' => Carbon::now(),
+            ]);
+            $notification = array(
+                'message' => 'Package Buy Successfully',
+                'alert-type' => 'success'
+            );
+            return redirect()->route('agent.property.index')->with($notification);
+        }
+
+        if($package_name == 'professional'){
+            $id = Auth::user()->id;
+            PackagePlan::insert([
+            'user_id' => $id,
+            'package_name' => 'professional',
+            'package_price' => 100,
+            'package_duration' => '50',
+            'invoice' => 'ERS'.mt_rand(10000, 99999),
+            'created_at' => Carbon::now(),
+            ]);
+            $notification = array(
+                'message' => 'Package Buy Successfully',
+                'alert-type' => 'success'
+            );
+            return redirect()->route('agent.property.index')->with($notification);
+        }
+        if($package_name == 'basic'){
+            $id = Auth::user()->id;
+            PackagePlan::insert([
+            'user_id' => $id,
+            'package_name' => 'basic',
+            'package_price' => 0,
+            'package_duration' => '1',
+            'invoice' => 'ERS'.mt_rand(10000, 99999),
+            'created_at' => Carbon::now(),
+            ]);
+            $notification = array(
+                'message' => 'Package Buy Successfully',
+                'alert-type' => 'success'
+            );
+            return redirect()->route('agent.property.index')->with($notification);
+        }
+
+        //AUTHENTICATION USER ID 
+        $aid = Auth::user()->id;
+        $user = User::find($aid);
+        $user_cradit = $user->credit;
+        // dd($user_cradit);
+        if($package_name =='business'){
+            User::where('id', $aid)->update([
+            'credit' => DB::raw('3+' . $user_cradit),
+        ]);
+        }elseif($package_name == 'professional'){
+            User::where('id', $aid)->update([
+            'credit' => DB::raw('50+' . $user_cradit),
+        ]);
+        }elseif($package_name == 'basic'){
+            User::where('id', $aid)->update([
+            'credit' => DB::raw('1+' . $user_cradit),
+        ]);
+        }
+
+        
+        $notification = array(
+            'message' => 'Package Buy Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('agent.property.index')->with($notification);
     }
 }

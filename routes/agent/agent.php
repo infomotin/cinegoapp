@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Agent\AgentController;
 use App\Http\Controllers\Agent\AgentPropertyController;
 use App\Http\Middleware\RedirectIfAuthenticated;
+use App\Http\Controllers\Backend\PackageHistoryController;
 
 
 Route::middleware(['auth', 'verified', 'roleMiddleware:agent'])->group(function () {
@@ -36,6 +37,14 @@ Route::middleware(['auth', 'verified', 'roleMiddleware:agent'])->group(function 
         Route::get('/agent/buy/package', 'AgentBuyPackage')->name('agent.buy.package');
         //agent.package.buy
         Route::get('/agent/package/buy/{package_name}', 'AgentPackageBuy')->name('agent.package.buy');
+        //store.business.plan
+        Route::post('/agent/package/buy/{package_name}', 'AgentPackageBuyStore')->name('store.business.plan');
+    });
+    Route::controller(PackageHistoryController::class)->group(function () {
+        //agent.buy.package.history
+        Route::get('/package/history', 'PackageHistory')->name('package.history');
+        //backend.package.invoice
+        Route::get('/package/invoice/{invoice}', 'PackageInvoice')->name('backend.package.invoice');
     });
 });
 

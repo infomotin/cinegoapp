@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\Backend\PropertyTypeController;
 use App\Http\Controllers\Admin\Backend\AmenitieController;
 use App\Http\Controllers\Backend\PropertyController;
+use App\Http\Controllers\Backend\PackageHistoryController;
 
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Controllers\Admin\Backend\AllUserController;
@@ -70,6 +71,12 @@ Route::middleware(['auth', 'verified','roleMiddleware:admin'])->group(function (
        
         // Route::get('/admin/users/restore/{id}', 'AllUserRestore')->name('admin.backend.users.restore');
         // Route::get('/admin/users/force/delete/{id}', 'AllUserForceDelete')->name('admin.backend.users.force.delete');
+    });
+    Route::controller(PackageHistoryController::class)->group(function () {
+        // admin.backend.package.history
+        Route::get('/admin/package/history', 'AdminPackageHistory')->name('admin.backend.package.history');
+        //admin.backend.package.invoice
+        Route::get('/admin/package/invoice/{invoice}', 'AdminPackageInvoice')->name('admin.backend.package.invoice');
     });
 
 });

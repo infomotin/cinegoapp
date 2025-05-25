@@ -79,6 +79,26 @@
                 </div>
                 
             </li>
+            <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="collapse" href="#property" role="button" aria-expanded="false"
+                        aria-controls="emails">
+                        <i class="link-icon" data-feather="mail"></i>
+                        <span class="link-title">Package history</span>
+                        <i class="link-arrow" data-feather="chevron-down"></i>
+                    </a>
+                    <div class="collapse" id="property">
+                        <ul class="nav sub-menu">
+                            <li class="nav-item">
+                                <a href="{{ route('admin.backend.package.history') }}" class="nav-link">Package Report</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">Add Property</a>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                </li>
             
             <li class="nav-item nav-category">Components</li>
             <li class="nav-item">
