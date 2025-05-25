@@ -30,7 +30,13 @@
                                     <figure class="author-thumb"><img
                                             src="{{ asset($item['agent']['photo']) }}"
                                             alt=""></figure>
-                                    <h6>{{$item['agent']['name']}}</h6>
+                                    <h6>
+                                        @if ($item['agent']['name'] == null)
+                                        <a href="#">Admin</a>
+                                        @else
+                                        <a href="#">{{$item['agent']['name']}}</a>
+                                        @endif
+                                    </h6>
                                 </div>
                                 <div class="buy-btn pull-right"><a href="property-details.html">@if ($item->property_status == 'rent') For Rent @else For Buy @endif</a>
                                 </div>
@@ -55,7 +61,7 @@
                                 <li><i class="icon-16"></i>{{$item->property_size}} Sq Ft</li>
                             </ul>
                             {{-- <div class="btn-box"><a href="{{ route('property.details', $item->id) }}" --}}
-                                <div class="btn-box"><a href="#"
+                                <div class="btn-box"><a href="{{url('property/details/'.$item->id.'/'.$item->property_slug)}}"
                                     class="theme-btn btn-two">See Details</a></div>
                         </div>
                     </div>

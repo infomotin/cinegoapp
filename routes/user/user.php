@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route; 
 use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\Frontend\IndexController;
+
 
 
 // User Frontend Routes 
@@ -16,3 +18,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/user/change/password', [UserController::class, 'UserChangePassword'])->name('user.change.password');
     Route::post('/user/change/password', [UserController::class, 'UserChangePasswordStore'])->name('user.change.password.store');
 });
+
+//Frontend Routes   
+Route::get('/property/details/{id}/{slug}', [IndexController::class, 'PropertyDetails']);
