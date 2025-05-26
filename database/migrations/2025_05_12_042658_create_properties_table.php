@@ -29,7 +29,7 @@ return new class extends Migration
             $table->string('garage')->nullable();
             $table->string('garage_size')->nullable(); 
             $table->string('property_size')->nullable();
-            $table->string('property_video')->nullable();
+            $table->text('property_video')->nullable();
             //address info 
             $table->string('city_name')->nullable();
             $table->string('street_name')->nullable();
