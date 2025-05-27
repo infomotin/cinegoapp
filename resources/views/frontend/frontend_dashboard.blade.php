@@ -9,11 +9,12 @@
     <title>CineGoApp</title>
     <!-- Fav Icon -->
     <link rel="icon" href="{{ asset('frontend/assets/images/favicon.ico') }}" type="image/x-icon">
+    {{-- csrf token --}}
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Google Fonts -->
     <link
         href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
-
     <!-- Stylesheets -->
     <link href="{{ asset('frontend/assets/css/font-awesome-all.css') }}" rel="stylesheet">
     <link href="{{ asset('frontend/assets/css/flaticon.css') }}" rel="stylesheet">
@@ -76,6 +77,9 @@
     <!-- main-js -->
     <script src="{{ asset('frontend/assets/js/script.js') }}"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    {{-- sweet alert cdn link --}}
+    {{-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
     <script>
@@ -99,6 +103,51 @@
                     break;
             }
         @endif
+    </script>
+    <script type="text/javascript">
+        function addToWishList(property_id) {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            })
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                url: "/add-to-wishlist/" + property_id,
+                success: function(data) {
+                    console.log(data)
+                    // Start Message 
+
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+                    if ($.isEmptyObject(data.error)) {
+
+                        Toast.fire({
+                            type: 'success',
+                            icon: 'success',
+                            title: data.success,
+                        })
+
+                    } else {
+
+                        Toast.fire({
+                            type: 'error',
+                            icon: 'error',
+                            title: data.error,
+                        })
+                    }
+
+                    // End Message  
+
+                }
+            });
+        }
     </script>
 
 

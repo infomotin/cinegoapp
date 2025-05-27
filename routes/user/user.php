@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route; 
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Frontend\IndexController;
+use App\Http\Controllers\Frontend\WishlistController;
 
 
 
@@ -21,3 +22,4 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 //Frontend Routes   
 Route::get('/property/details/{id}/{slug}', [IndexController::class, 'PropertyDetails']);
+Route::post('/add-to-wishlist/{property_id}', [WishlistController::class, 'AddToWishlist']);
