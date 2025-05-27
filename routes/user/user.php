@@ -18,6 +18,17 @@ Route::middleware(['auth', 'verified'])->group(function () {
     //user.change.password
     Route::get('/user/change/password', [UserController::class, 'UserChangePassword'])->name('user.change.password');
     Route::post('/user/change/password', [UserController::class, 'UserChangePasswordStore'])->name('user.change.password.store');
+    //user.wishlist
+    Route::get('/user/wishlist', [WishlistController::class, 'UserWishlist'])->name('user.wishlist');
+    //user.wishlist.grid
+    Route::get('/user/wishlist/grid', [WishlistController::class, 'UserWishlistGrid'])->name('user.wishlist.grid');
+    // user.wishlist.delete
+    Route::get('/user/wishlist/delete/{id}', [WishlistController::class, 'UserWishlistDelete'])->name('user.wishlist.delete');
+    //user.wishlist.json
+    Route::get('/user/wishlist/json', [WishlistController::class, 'UserWishlistJson'])->name('user.wishlist.json');
+
+    // user.wishlist.json
+    Route::get('/get-wishlist-properties', [WishlistController::class, 'GetWishlistProperties']);
 });
 
 //Frontend Routes   

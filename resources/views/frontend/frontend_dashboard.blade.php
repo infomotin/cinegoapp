@@ -149,7 +149,74 @@
             });
         }
     </script>
+    <SCript type="text/javascript">
+        function Wishlist() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            })
+            $.ajax({
+                type: 'GET',
+                dataType: 'json',
+                url: "/get-wishlist-properties/",
+                success: function(response) {
+                    console.log(response);
+                    $('#wishListQty').text(response.wishListQty);
+                    var html = '';
+                    $.each(response.wishlists, function(key, value) {
+                        html += `
+                            <div class="deals-block-one">
+                                    <div class="inner-box">
+                                        <div class="image-box">
+                                            <figure class="image"><img src="/${value.property.property_thambnail}"
+                                                    alt=""></figure>
+                                            <div class="batch"><i class="icon-11"></i></div>
+                                            <span class="category">Featured</span>
+                                            <div class="buy-btn"><a href="#">For"${value.property.property_status}" </a></div>
+                                        </div>
+                                        <div class="lower-content">
+                                            <div class="title-text">
+                                                <h4><a href="#">"${value.property.property_name}"</a></h4>
+                                            </div>
+                                            <div class="price-box clearfix">
+                                                <div class="price-info pull-left">
+                                                    <h6>Start From</h6>
+                                                    <h4>"${value.property.lowest_price}"</h4>
+                                                </div>
+                                                <div class="author-box pull-right">
+                                                    <figure class="author-thumb">
+                                                        <img src="/assets/${value.user.photo}" alt="">
+                                                        <span>${ value.user.name }</span>
+                                                    </figure>
+                                                </div>
+                                            </div>
+                                            <p> ${value.property.long_descp } </p>
+                                            <ul class="more-details clearfix">
+                                                <li><i class="icon-14"></i>${value.property.bedrooms} Beds</li>
+                                                <li><i class="icon-15"></i>${value.property.bathrooms} Baths</li>
+                                                <li><i class="icon-16"></i>${value.property.property_size} Sq Ft</li>
+                                            </ul>
+                                            <div class="other-info-box clearfix">
+                                                <div class="btn-box pull-left"><a href="/property/details/${value.property.id}/${value.property.property_slug}"
+                                                        class="theme-btn btn-two">See Details</a></div>
+                                                <ul class="other-option pull-right clearfix">
+                                                    <li><a href="#"><i class="icon-12"></i></a></li>
+                                                    <li><a aria-label="Add To Wishlist" class="action-btn" id="${value.property.id}" onclick="addToWishList(this.${value.property.id})"><i class="icon-13"></i></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        `
+                    });
+                    $('#wishList').html(html);
 
+                }
+            });
+        }
+        Wishlist()
+    </SCript>
 
 </body><!-- End of .page_wrapper -->
 

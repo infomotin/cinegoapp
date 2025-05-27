@@ -18,7 +18,7 @@ class WishlistController extends Controller
             $wishlist_check = Wishlist::where('user_id',Auth::id())->where('property_id',$property_id)->first();
             if($wishlist_check){
                 $wishlist_check->delete();
-                return response()->json(['success' => 'Wishlist Item Removed']);
+                return response()->json(['error' => 'Wishlist Item Removed']);
             }else{
                 $wishlist = new Wishlist();
                 $wishlist->user_id = Auth::id();
@@ -31,5 +31,33 @@ class WishlistController extends Controller
             return response()->json(['error' => 'Login to Add Wishlist']);
         }
     }
+    //UserWishlist
+    public function UserWishlist()
+    {
+        $wishlists = Wishlist::where('user_id',Auth::id())->get();
+        return view('frontend.wishlist.user_wishlist',compact('wishlists'));
+    }
+    //UserWishlistGrid
+    public function UserWishlistGrid()
+    {
+        $wishlists = Wishlist::where('user_id',Auth::id())->get();
+        return view('frontend.wishlist.user_wishlist_grid',compact('wishlists'));
+    }
+    //UserWishlistJson
+    public function UserWishlistJson()
+    {
+        
+         return view('frontend.wishlist.user_wishlist_grid_json');
+    }
+    //UserWishlistDelete
+    public function GetWishlistProperties()
+    { 
+        
+        $wishlists = Wishlist::with('property')->with('user')->where('user_id',Auth::id())->get();
+        $wishListQty = Wishlist::count();
+        // dd($wishListQty,$wishlists);
+        return response()->json(['wishlists' => $wishlists,'wishListQty' => $wishListQty]);
+    }
+       
 
 }
