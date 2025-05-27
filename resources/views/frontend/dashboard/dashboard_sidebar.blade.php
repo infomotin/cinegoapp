@@ -18,6 +18,8 @@
                     Wishlist Grid </a></li>
             <li><a href="{{ route('user.wishlist.json') }}"><i class="fa fa-list-alt" aria-hidden="true"></i></i>
                     Wishlist Json </a></li>
+                <li><a href="{{ route('user.compare') }}"><i class="fa fa-list-alt" aria-hidden="true"></i></i>
+                    Compare List </a></li>
             <li><a href="blog-details.html"><i class="fa fa-indent" aria-hidden="true"></i> Add a
                     Property </a></li>
             <li><a href="{{ route('user.change.password') }}"><i class="fa fa-key" aria-hidden="true"></i> Security

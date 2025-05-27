@@ -149,6 +149,49 @@
             });
         }
     </script>
+    
+    <script type="text/javascript">
+        function addToCompare(property_id) {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            })
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                url: "/add-to-compare/" + property_id,
+                success: function(data) {
+                    console.log(data)
+                    // Start Message 
+
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+                    if ($.isEmptyObject(data.error)) {
+
+                        Toast.fire({
+                            type: 'success',
+                            icon: 'success',
+                            title: data.success,
+                        })
+
+                    } else {
+
+                        Toast.fire({
+                            type: 'error',
+                            icon: 'error',
+                            title: data.error,
+                        })
+                    }
+                }
+            });
+        }
+    </script>
     <SCript type="text/javascript">
         function Wishlist() {
             $.ajaxSetup({
@@ -202,7 +245,11 @@
                                                         class="theme-btn btn-two">See Details</a></div>
                                                 <ul class="other-option pull-right clearfix">
                                                     <li><a href="#"><i class="icon-12"></i></a></li>
-                                                    <li><a aria-label="Add To Wishlist" class="action-btn" id="${value.property.id}" onclick="addToWishList(this.${value.property.id})"><i class="icon-13"></i></a></li>
+                                                    <li>
+                                                        <a aria-label="Add To Wishlist" class="action-btn" id="${value.property.id}" onclick="addToWishList('${value.property.id}')">
+                                                                <i class="icon-13"></i>
+                                                        </a>
+                                                    </li>
                                                 </ul>
                                             </div>
                                         </div>

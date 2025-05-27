@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\WishlistController;
+use App\Http\Controllers\Frontend\CompareController;
 
 
 
@@ -29,8 +30,16 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // user.wishlist.json
     Route::get('/get-wishlist-properties', [WishlistController::class, 'GetWishlistProperties']);
+    //user.compare
+    Route::get('/user/compare', [CompareController::class, 'UserCompare'])->name('user.compare');
+    //user.compare.delete
+    // Route::get('/user/compare/delete/{id}', [CompareController::class, 'UserCompareDelete'])->name('user.compare.delete');
+
+    
+    
 });
 
 //Frontend Routes   
 Route::get('/property/details/{id}/{slug}', [IndexController::class, 'PropertyDetails']);
 Route::post('/add-to-wishlist/{property_id}', [WishlistController::class, 'AddToWishlist']);
+Route::post('/add-to-compare/{property_id}', [CompareController::class, 'AddToCompare']);
