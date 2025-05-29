@@ -20,8 +20,8 @@
                     Wishlist Json </a></li>
                 <li><a href="{{ route('user.compare') }}"><i class="fa fa-list-alt" aria-hidden="true"></i></i>
                     Compare List </a></li>
-            <li><a href="blog-details.html"><i class="fa fa-indent" aria-hidden="true"></i> Add a
-                    Property </a></li>
+            {{-- <li><a href="{{ route('user.message') }}"><i class="fa fa-indent" aria-hidden="true"></i> Messages  </a></li> --}}
+            <
             <li><a href="{{ route('user.change.password') }}"><i class="fa fa-key" aria-hidden="true"></i> Security
                 </a></li>
             <li><a href="{{ route('user.logout') }}"><i class="fa fa-chevron-circle-up" aria-hidden="true"></i> Logout

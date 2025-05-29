@@ -77,7 +77,11 @@
                                 <a href="{{ route('package.history') }}" class="nav-link">Package Report</a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('agent.property.create') }}" class="nav-link">Add Property</a>
+                                <a href="{{ route('agent.message.report') }}" class="nav-link">Message Report</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="{{ route('agent.message.index') }}" class="nav-link">Message inbox </a>
                             </li>
 
                         </ul>

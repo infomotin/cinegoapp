@@ -5,6 +5,7 @@ use App\Http\Controllers\Agent\AgentController;
 use App\Http\Controllers\Agent\AgentPropertyController;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Controllers\Backend\PackageHistoryController;
+use App\Http\Controllers\Frontend\PropertyMessageController;
 
 
 Route::middleware(['auth', 'verified', 'roleMiddleware:agent'])->group(function () {
@@ -45,6 +46,14 @@ Route::middleware(['auth', 'verified', 'roleMiddleware:agent'])->group(function 
         Route::get('/package/history', 'PackageHistory')->name('package.history');
         //backend.package.invoice
         Route::get('/package/invoice/{invoice}', 'PackageInvoice')->name('backend.package.invoice');
+    });
+    Route::controller(PropertyMessageController::class)->group(function () {
+        //agent.message.index
+        Route::get('/agent/message/report', 'AgentMessageIndex')->name('agent.message.report');
+        //agent.message.index
+        Route::get('/agent/message/inbox', 'AgentMessageInbox')->name('agent.message.index');
+        //agent.message.show
+        Route::get('/agent/message/show/{id}', 'AgentMessageShow')->name('agent.message.show');
     });
 });
 

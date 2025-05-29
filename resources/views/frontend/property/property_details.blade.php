@@ -53,8 +53,8 @@
                         <div class="right-column pull-right clearfix">
                             <div class="price-inner clearfix">
                                 <ul class="category clearfix pull-left">
-                                    <li><a href="property-details.html">{!! $property['propertyType']['type_name'] !!}</a></li>
-                                    <li><a href="property-details.html">
+                                    <li><a href="#">{!! $property['propertyType']['type_name'] !!}</a></li>
+                                    <li><a href="#">
                                             @if ($property->property_status == 'rent')
                                                 For Rent
                                             @else
@@ -67,10 +67,10 @@
                                 </div>
                             </div>
                             <ul class="other-option pull-right clearfix">
-                                <li><a href="property-details.html"><i class="icon-37"></i></a></li>
-                                <li><a href="property-details.html"><i class="icon-38"></i></a></li>
-                                <li><a href="property-details.html"><i class="icon-12"></i></a></li>
-                                <li><a href="property-details.html"><i class="icon-13"></i></a></li>
+                                <li><a href="#"><i class="icon-37"></i></a></li>
+                                <li><a href="#"><i class="icon-38"></i></a></li>
+                                <li><a href="#"><i class="icon-12"></i></a></li>
+                                <li><a href="#"><i class="icon-13"></i></a></li>
                             </ul>
                         </div>
                     </div>
@@ -236,7 +236,7 @@
                                         <h4>Schedule A Tour</h4>
                                     </div>
                                     <div class="form-inner">
-                                        <form action="property-details.html" method="post">
+                                        <form>
                                             <div class="row clearfix">
                                                 <div class="col-lg-6 col-md-12 col-sm-12 column">
                                                     <div class="form-group">
@@ -306,29 +306,61 @@
                                         </div>
                                     </div>
                                     <div class="form-inner">
-                                        <form action="#" method="post" class="default-form">
-                                            @csrf
-                                            <input type="text" name="property_id" value="{{ $property->id }}" hidden>
-                                            <input type="text" name="agent_id" value="{{ $property->agent->id }}"
-                                                hidden>
-                                            <div class="form-group">
-                                                <input type="text" name="name" placeholder="Your name"
-                                                    required="">
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="email" name="email" placeholder="Your Email"
-                                                    required="">
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="text" name="phone" placeholder="Phone" required="">
-                                            </div>
-                                            <div class="form-group">
-                                                <textarea name="message" placeholder="Message"></textarea>
-                                            </div>
-                                            <div class="form-group message-btn">
-                                                <button type="submit" class="theme-btn btn-one">Send Message</button>
-                                            </div>
-                                        </form>
+                                        @if (Auth::check())
+                                            <form action="{{ route('property.enquiry.store') }}" method="post"
+                                                class="default-form">
+                                                @csrf
+                                                <input type="text" name="property_id" id="property_id"
+                                                    value="{{ $property->id }}" hidden>
+                                                <input type="text" name="agent_id" id="agent_id"
+                                                    value="{{ $property->agent->id }}" hidden>
+                                                <div class="form-group">
+                                                    <input type="text" name="name" placeholder="Your name"
+                                                        required="" value="{{ Auth::user()->name }}" readonly>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="email" name="email" placeholder="Your Email"
+                                                        required="" value="{{ Auth::user()->email }}" readonly>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="text" name="phone" id="phone"
+                                                        placeholder="Phone" required="">
+                                                </div>
+                                                <div class="form-group">
+                                                    <textarea name="message" id="message" placeholder="Message"></textarea>
+                                                </div>
+                                                <div class="form-group message-btn">
+                                                    <button type="submit" class="theme-btn btn-one">Submit Now</button>
+                                                </div>
+                                            </form>
+                                        @else
+                                            <form action="{{ route('property.enquiry.store') }}" method="post"
+                                                class="default-form">
+                                                @csrf
+                                                <input type="text" name="property_id" id="property_id"
+                                                    value="{{ $property->id }}" hidden>
+                                                <input type="text" name="agent_id" id="agent_id"
+                                                    value="{{ $property->agent->id }}" hidden>
+                                                <div class="form-group">
+                                                    <input type="text" name="name" id="name"
+                                                        placeholder="Your name" required="">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="email" name="email" id="email"
+                                                        placeholder="Your Email" required="">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="text" name="phone" id="phone"
+                                                        placeholder="Phone" required="">
+                                                </div>
+                                                <div class="form-group">
+                                                    <textarea name="message" id="message" placeholder="Message"></textarea>
+                                                </div>
+                                                <div class="form-group message-btn">
+                                                    <button type="submit" class="theme-btn btn-one">Submit Now</button>
+                                                </div>
+                                            </form>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="calculator-widget sidebar-widget">
@@ -336,7 +368,7 @@
                                         <div class="widget-title">
                                             <h4>Mortgage Calculator</h4>
                                         </div>
-                                        <form method="post" action="mortgage-calculator.html" class="default-form">
+                                        <form class="default-form">
                                             @csrf
                                             <div class="form-group">
                                                 <i class="fas fa-dollar-sign"></i>
@@ -387,57 +419,72 @@
                         </div>
                         <div class="row clearfix">
                             @foreach ($properties as $item)
-                            <div class="col-lg-4 col-md-6 col-sm-12 feature-block">
-                                <div class="feature-block-one wow fadeInUp animated" data-wow-delay="00ms"
-                                    data-wow-duration="1500ms">
-                                    <div class="inner-box">
-                                        <div class="image-box">
-                                            <figure class="image"><img
-                                                    src="{{ asset($item->property_thambnail) }}"
-                                                    alt=""></figure>
-                                            <div class="batch"><i class="icon-11"></i></div>
-                                            <span class="category">Featured</span>
-                                        </div>
-                                        <div class="lower-content">
-                                            <div class="author-info clearfix">
-                                                <div class="author pull-left">
-                                                    <figure class="author-thumb"><img
-                                                            src="{{ asset($item['agent']['photo']) }}"
-                                                            alt="">
-                                                    </figure>
-                                                    <h6>@if ($item['agent']['name'] == null)
-                                        <a href="#">Admin</a>
-                                        @else
-                                        <a href="#">{{$item['agent']['name']}}</a>
-                                        @endif</h6>
-                                                </div>
-                                                <div class="buy-btn pull-right"><a href="property-details.html">@if ($item->property_status == 'rent') For Rent @else For Buy @endif</a></div>
+                                <div class="col-lg-4 col-md-6 col-sm-12 feature-block">
+                                    <div class="feature-block-one wow fadeInUp animated" data-wow-delay="00ms"
+                                        data-wow-duration="1500ms">
+                                        <div class="inner-box">
+                                            <div class="image-box">
+                                                <figure class="image"><img src="{{ asset($item->property_thambnail) }}"
+                                                        alt=""></figure>
+                                                <div class="batch"><i class="icon-11"></i></div>
+                                                <span class="category">Featured</span>
                                             </div>
-                                            <div class="title-text">
-                                                <h4><a href="property-details.html">{{$item->property_name}}</a></h4>
-                                            </div>
-                                            <div class="price-box clearfix">
-                                                <div class="price-info pull-left">
-                                                    <h6>Start From</h6>
-                                                    <h4>${{$item->lowest_price}}</h4>
+                                            <div class="lower-content">
+                                                <div class="author-info clearfix">
+                                                    <div class="author pull-left">
+                                                        <figure class="author-thumb"><img
+                                                                src="{{ asset($item['agent']['photo']) }}"
+                                                                alt="">
+                                                        </figure>
+                                                        <h6>
+                                                            @if ($item['agent']['name'] == null)
+                                                                <a href="#">Admin</a>
+                                                            @else
+                                                                <a href="#">{{ $item['agent']['name'] }}</a>
+                                                            @endif
+                                                        </h6>
+                                                    </div>
+                                                    <div class="buy-btn pull-right"><a href="#">
+                                                            @if ($item->property_status == 'rent')
+                                                                For Rent
+                                                            @else
+                                                                For Buy
+                                                            @endif
+                                                        </a></div>
                                                 </div>
-                                                <ul class="other-option pull-right clearfix">
-                                                    <li><a aria-label="Add To Compare" class="action-btn" id="{{$item->id}}" onclick="addToCompare(this.id)"><i class="icon-12"></i></a></li>
-                                                    <li><a aria-label="Add To Wishlist" class="action-btn" id="{{$item->id}}" onclick="addToWishList(this.id)"><i class="icon-13"></i></a></li>
+                                                <div class="title-text">
+                                                    <h4><a href="#">{{ $item->property_name }}</a>
+                                                    </h4>
+                                                </div>
+                                                <div class="price-box clearfix">
+                                                    <div class="price-info pull-left">
+                                                        <h6>Start From</h6>
+                                                        <h4>${{ $item->lowest_price }}</h4>
+                                                    </div>
+                                                    <ul class="other-option pull-right clearfix">
+                                                        <li><a aria-label="Add To Compare" class="action-btn"
+                                                                id="{{ $item->id }}"
+                                                                onclick="addToCompare(this.id)"><i
+                                                                    class="icon-12"></i></a></li>
+                                                        <li><a aria-label="Add To Wishlist" class="action-btn"
+                                                                id="{{ $item->id }}"
+                                                                onclick="addToWishList(this.id)"><i
+                                                                    class="icon-13"></i></a></li>
+                                                    </ul>
+                                                </div>
+                                                <p>{{ $item->short_descp }}</p>
+                                                <ul class="more-details clearfix">
+                                                    <li><i class="icon-14"></i>{{ $item->bedrooms }} Beds</li>
+                                                    <li><i class="icon-15"></i>{{ $item->bathrooms }} Baths</li>
+                                                    <li><i class="icon-16"></i>{{ $item->property_size }} Sq Ft</li>
                                                 </ul>
+                                                <div class="btn-box"><a
+                                                        href="{{ url('property/details/' . $item->id . '/' . $item->property_slug) }}"
+                                                        class="theme-btn btn-two">See Details</a></div>
                                             </div>
-                                            <p>{{$item->short_descp}}</p>
-                                            <ul class="more-details clearfix">
-                                                <li><i class="icon-14"></i>{{$item->bedrooms}} Beds</li>
-                                                <li><i class="icon-15"></i>{{$item->bathrooms}} Baths</li>
-                                                <li><i class="icon-16"></i>{{$item->property_size}} Sq Ft</li>
-                                            </ul>
-                                            <div class="btn-box"><a href="{{url('property/details/'.$item->id.'/'.$item->property_slug)}}"
-                                    class="theme-btn btn-two">See Details</a></div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                             @endforeach
                         </div>
                     </div>

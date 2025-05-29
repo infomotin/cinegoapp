@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Backend\Property;
 use App\Models\User;
 
-class Compare extends Model
+
+class PropertyMessage extends Model
 {
     use HasFactory;
     protected $guarded = [];
@@ -19,5 +20,9 @@ class Compare extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+    public function agentName()
+    {
+        return $this->belongsTo(User::class, 'agent_id', 'id');
     }
 }

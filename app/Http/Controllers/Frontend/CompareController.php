@@ -34,4 +34,11 @@ class CompareController extends Controller
         $compares = Compare::where('user_id',Auth::id())->get();
         return view('frontend.compare.user_compare',compact('compares'));
     }
+    //GetCompareProperties
+    public function GetCompareProperties(){
+        $compares = Compare::with('property')->with('user')->where('user_id',Auth::id())->get();
+        // dd($compares);
+        $comparesQty = Compare::count();
+        return response()->json(['compares' => $compares,'comparesQty' => $comparesQty]);
+    }
 }

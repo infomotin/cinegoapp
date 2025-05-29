@@ -149,7 +149,7 @@
             });
         }
     </script>
-    
+
     <script type="text/javascript">
         function addToCompare(property_id) {
             $.ajaxSetup({
@@ -192,7 +192,7 @@
             });
         }
     </script>
-    <SCript type="text/javascript">
+    <script type="text/javascript">
         function Wishlist() {
             $.ajaxSetup({
                 headers: {
@@ -209,6 +209,7 @@
                     var html = '';
                     $.each(response.wishlists, function(key, value) {
                         html += `
+                        
                             <div class="deals-block-one">
                                     <div class="inner-box">
                                         <div class="image-box">
@@ -255,6 +256,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                
                         `
                     });
                     $('#wishList').html(html);
@@ -263,7 +265,138 @@
             });
         }
         Wishlist()
-    </SCript>
+    </script>
+    <script type="text/javascript">
+        function Compare() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            })
+            $.ajax({
+                type: 'GET',
+                dataType: 'json',
+                url: "/get-compare-properties/",
+                success: function(response) {
+                    console.log(response);
+                    $('#comparesQty').text(response.comparesQty);
+                    var html = '';
+                    $.each(response.compares, function(key, value) {
+                        html += `
+                        <tbody>
+                            <tr>
+                            <th>Property Info</th>
+                            <th>
+                                <figure class="image-box"><img src="/${value.property.property_thambnail}" alt="">
+                                </figure>
+                                <div class="title">${value.property.property_name}</div>
+                                <div class="price">${value.property.lowest_price}</div>
+                            </th>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>City</p>
+                            </td>
+                            <td>
+                                <p>${value.property.city_name}</p>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Area</p>
+                            </td>
+                            <td>
+                                <p>${value.property.property_size} Sq Ft</p>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Rooms</p>
+                            </td>
+                            <td>
+                                <p>${value.property.bedrooms}</p>
+                            </td>
+                            <td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Bathrooms</p>
+                            </td>
+                            <td>
+                                <p>${value.property.bathrooms}</p>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Garage</p>
+                            </td>
+                            <td>
+                                <p>${value.property.garage}</p>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>See Details</p>
+                            </td>
+                            <td>
+                                <div class="btn-box pull-left"><a href="/property/details/${value.property.id}/${value.property.property_slug}"
+                                                        class="theme-btn btn-two">See Details</a></div>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Remove</p>
+                            </td>
+                            <td>
+                                <li>
+                                                        <a aria-label="Remove From Compare" class="btn btn-danger action-btn" id="${value.property.id}" onclick="addToCompare('${value.property.id}')">
+                                                                Remove
+                                                        </a>
+                                                    </li>
+                            </td>
+
+                        </tr>
+                        </tbody>
+                        `;
+                    });
+                    $('#compares').html(html);
+
+                }
+            });
+        }
+        Compare()
+    </script>
+    {{-- <script type="text/javascript">
+        function sendMessage() {
+            var property_id = $('#property_id').val();
+            var agent_id = $('#agent_id').val();
+            var message = $('#message').val();
+            var name = $('#name').val();
+            var email = $('#email').val();
+            var phone = $('#phone').val();
+           
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            })
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                url: "/send-message/" + property_id + "/" + agent_id + "/" + message + "/" + name + "/" + email + "/" + phone,
+                success: function(response) {
+                    console.log(response);
+                }
+            });
+        }
+    </script> --}}
 
 </body><!-- End of .page_wrapper -->
 
