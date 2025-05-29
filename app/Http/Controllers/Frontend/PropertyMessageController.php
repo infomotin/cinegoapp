@@ -77,4 +77,10 @@ class PropertyMessageController extends Controller
         $message = PropertyMessage::with('property')->with('user')->with('agentName')->find($id);
         return view('agent.message.show', compact('message', 'agent_name'));
     }
+    //AdminMessageInbox
+    public function AdminMessageInbox()
+    {
+        $messages = PropertyMessage::latest()->get();
+        return view('admin.backend.message.inbox', compact('messages'));
+    }
 }

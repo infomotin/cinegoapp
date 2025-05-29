@@ -27,4 +27,11 @@ class IndexController extends Controller
 
         return view('frontend.property.property_details', compact('property', 'property_types', 'amenities', 'agents', 'multiImage', 'facilities', 'amenities_id'));
     }
+    //AgentDetails
+    public function AgentDetails($id)
+    {
+        $agent = User::with('properties')->findOrFail($id);
+        return view('frontend.agent.agent_details', compact('agent'));
+    }
+ 
 }

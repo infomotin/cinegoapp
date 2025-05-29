@@ -41,3 +41,5 @@ Route::get('/property/details/{id}/{slug}', [IndexController::class, 'PropertyDe
 Route::post('/add-to-wishlist/{property_id}', [WishlistController::class, 'AddToWishlist']);
 Route::post('/add-to-compare/{property_id}', [CompareController::class, 'AddToCompare']);
 Route::post('/property/enquiry/store', [PropertyMessageController::class, 'PropertyMessageStore'])->name('property.enquiry.store');
+//agent.details
+Route::get('/agent/details/{id}/', [IndexController::class, 'AgentDetails'])->name('agent.details');
