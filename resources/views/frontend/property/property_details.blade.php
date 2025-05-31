@@ -1,6 +1,6 @@
         @extends('frontend.frontend_dashboard')
         @section('content')
-            @include('frontend.home.banner')
+        @include('frontend.home.banner')
 
             <!--Page Title-->
             <section class="page-title-two bg-color-1 centred">
@@ -35,9 +35,9 @@
                                             alt=""></figure>
                                     <h6>
                                         @if ($property['agent']['name'] == null)
-                                            <a href="#">Admin</a>
+                                            <a href="{{ route('agent.details', $property['agent']['id'])}}">Admin</a>
                                         @else
-                                            <a href="#">{{ $property['agent']['name'] }}</a>
+                                            <a href="{{ route('agent.details', $property['agent']['id'])}}">{{ $property['agent']['name'] }}</a>
                                         @endif
                                     </h6>
                                 </div>
@@ -302,7 +302,7 @@
                                                 <li><i class="fas fa-phone"></i><a
                                                         href="tel:03030571965">{{ $property->agent->phone }}</a></li>
                                             </ul>
-                                            <div class="btn-box"><a href="agents-details.html">View Listing</a></div>
+                                            <div class="btn-box"><a href="{{ route('agent.details', $property->agent->id)}}">View Listing</a></div>
                                         </div>
                                     </div>
                                     <div class="form-inner">

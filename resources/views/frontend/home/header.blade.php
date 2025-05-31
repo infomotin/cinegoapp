@@ -81,7 +81,7 @@
                                 </li>
                                 <li class="dropdown"><a href="{{ route('index') }}"><span>Property</span></a>
                                     <ul>
-                                        <li><a href="property-list.html">Property List</a></li>
+                                        <li><a href="{{ route('property.index') }}">Property List</a></li>
                                         <li><a href="property-grid.html">Property Grid</a></li>
                                         <li><a href="property-list-2.html">Property List Full View</a></li>
                                         <li><a href="property-grid-2.html">Property Grid Full View</a></li>

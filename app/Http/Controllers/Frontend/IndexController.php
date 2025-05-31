@@ -33,5 +33,12 @@ class IndexController extends Controller
         $agent = User::with('properties')->findOrFail($id);
         return view('frontend.agent.agent_details', compact('agent'));
     }
+    //PropertyIndex
+    public function PropertyIndex()
+    {
+        $properties = Property::latest()->limit(6)->get();
+        
+        return view('frontend.property.property_index', compact('properties'));
+    }
  
 }

@@ -43,3 +43,5 @@ Route::post('/add-to-compare/{property_id}', [CompareController::class, 'AddToCo
 Route::post('/property/enquiry/store', [PropertyMessageController::class, 'PropertyMessageStore'])->name('property.enquiry.store');
 //agent.details
 Route::get('/agent/details/{id}/', [IndexController::class, 'AgentDetails'])->name('agent.details');
+//property.index
+Route::get('/property/index', [IndexController::class, 'PropertyIndex'])->name('property.index');

@@ -32,17 +32,17 @@
                                             alt=""></figure>
                                     <h6>
                                         @if ($item['agent']['name'] == null)
-                                        <a href="#">Admin</a>
+                                        <a href="{{ route('agent.details', $item['agent']['id'])}}">Admin</a>
                                         @else
-                                        <a href="#">{{$item['agent']['name']}}</a>
+                                        <a href="{{ route('agent.details', $item['agent']['id'])}}">{{$item['agent']['name']}}</a>
                                         @endif
                                     </h6>
                                 </div>
-                                <div class="buy-btn pull-right"><a href="property-details.html">@if ($item->property_status == 'rent') For Rent @else For Buy @endif</a>
+                                <div class="buy-btn pull-right"><a href="{{url('property/details/'.$item->id.'/'.$item->property_slug)}}">@if ($item->property_status == 'rent') For Rent @else For Buy @endif</a>
                                 </div>
                             </div>
                             <div class="title-text">
-                                <h4><a href="property-details.html">{{$item->property_name}}</a></h4>
+                                <h4><a href="{{url('property/details/'.$item->id.'/'.$item->property_slug)}}">{{$item->property_name}}</a></h4>
                             </div>
                             <div class="price-box clearfix">
                                 <div class="price-info pull-left">

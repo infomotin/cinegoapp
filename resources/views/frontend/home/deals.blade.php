@@ -32,11 +32,11 @@
                                             alt=""></figure>
                                     <h6>{{$item['agent']['name']}}</h6>
                                 </div>
-                                <div class="buy-btn pull-right"><a href="property-details.html">@if ($item->property_status == 'rent') For Rent @else For Buy @endif</a>
+                                <div class="buy-btn pull-right"><a href="{{url('property/details/'.$item->id.'/'.$item->property_slug)}}">@if ($item->property_status == 'rent') For Rent @else For Buy @endif</a>
                                 </div>
                             </div>
                             <div class="title-text">
-                                <h4><a href="property-details.html">{{$item->property_name}}</a></h4>
+                                <h4><a href="{{url('property/details/'.$item->id.'/'.$item->property_slug)}}">{{$item->property_name}}</a></h4>
                             </div>
                             <div class="price-box clearfix">
                                 <div class="price-info pull-left">
@@ -55,7 +55,7 @@
                                 <li><i class="icon-16"></i>{{$item->property_size}} Sq Ft</li>
                             </ul>
                             {{-- <div class="btn-box"><a href="{{ route('property.details', $item->id) }}" --}}
-                                <div class="btn-box"><a href="#"
+                                <div class="btn-box"><a href="{{url('property/details/'.$item->id.'/'.$item->property_slug)}}"
                                     class="theme-btn btn-two">See Details</a></div>
                         </div>
                     </div>
