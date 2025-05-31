@@ -10,6 +10,7 @@ use App\Http\Controllers\Frontend\PropertyMessageController;
 
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Controllers\Admin\Backend\AllUserController;
+use App\Http\Controllers\Admin\Backend\AddressController;
 
 
 Route::middleware(['auth', 'verified','roleMiddleware:admin'])->group(function () {
@@ -82,6 +83,10 @@ Route::middleware(['auth', 'verified','roleMiddleware:admin'])->group(function (
     Route::controller(PropertyMessageController::class)->group(function () {
         //admin.backend.message.inbox
         Route::get('/admin/message/inbox', 'AdminMessageInbox')->name('admin.backend.message.inbox');
+    });
+    Route::controller(AddressController::class)->group(function () {
+        // admin.backend.address.index
+        Route::get('/admin/address/inbex', 'AdminAddressInbex')->name('admin.backend.address.index');
     });
 
 });

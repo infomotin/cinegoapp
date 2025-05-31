@@ -123,7 +123,31 @@
                     </ul>
                 </div>
             </li>
-            
+            {{-- for address  --}}
+                <li class="nav-item nav-category">Address Management</li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="collapse" href="#uiComponents" role="button"
+                    aria-expanded="false" aria-controls="uiComponents">
+                    <i class="link-icon" data-feather="feather"></i>
+                    <span class="link-title">Country Management</span>
+                    <i class="link-arrow" data-feather="chevron-down"></i>
+                </a>
+                <div class="collapse" id="uiComponents">
+                    <ul class="nav sub-menu">
+                        <li class="nav-item">
+                            <a href="{{ route('admin.backend.address.index') }}" class="nav-link">Create Country</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="pages/ui-components/alerts.html" class="nav-link">Alerts</a>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a href="pages/ui-components/tooltips.html" class="nav-link">Tooltips</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            {{-- end address --}}
              
             <li class="nav-item nav-category">Pages</li>
             <li class="nav-item">
