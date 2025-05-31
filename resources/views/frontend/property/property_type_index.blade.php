@@ -11,7 +11,7 @@
                         <h1>Property List</h1>
                         <ul class="bread-crumb clearfix">
                             <li><a href="{{ url('/') }}">Home</a></li>
-                            <li><a href="{{ route('property.index') }}">Property List</a></li>
+                            <li><a href="{{ route('property.index') }}">{{ $property_types->type_name }}</a></li>
                         </ul>
                     </div>
                 </div>
@@ -302,7 +302,9 @@
                                     </div>
                                 </div>
                                 <div class="pagination-wrapper">
-                                     {{ $properties->links('vendor.pagination.custom') }}
+                                {{ $properties->links('vendor.pagination.custom') }}
+
+                                    
                                 </div>
                             </div>
                         </div>

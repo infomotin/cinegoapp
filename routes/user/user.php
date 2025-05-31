@@ -45,3 +45,5 @@ Route::post('/property/enquiry/store', [PropertyMessageController::class, 'Prope
 Route::get('/agent/details/{id}/', [IndexController::class, 'AgentDetails'])->name('agent.details');
 //property.index
 Route::get('/property/index', [IndexController::class, 'PropertyIndex'])->name('property.index');
+//property.type
+Route::get('/property/type/{id}', [IndexController::class, 'PropertyType'])->name('property.type');

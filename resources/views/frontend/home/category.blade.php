@@ -12,7 +12,7 @@
                         <div class="category-block-one">
                             <div class="inner-box">
                                 <div class="icon-box"><i class="{{ $item->icon}}"></i></div>
-                                <h5><a href="property-details.html">{{ $item->type_name }}</a></h5>
+                                <h5><a href="{{ route('property.type', $item->id)}}">{{ $item->type_name }}</a></h5>
                                 <span>{{ $item->properties->count() }}</span>
                             </div>
                         </div>

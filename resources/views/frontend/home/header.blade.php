@@ -17,18 +17,18 @@
                     <li><a href="{{ route('index') }}"><i class="fab fa-google-plus-g"></i></a></li>
                     <li><a href="{{ route('index') }}"><i class="fab fa-vimeo-v"></i></a></li>
                 </ul>
-                @auth 
-                <div class="sign-box">
-                    <a href="{{ route('dashboard') }}"><i class="fas fa-user"></i>Dashboard</a>
-                    <a href="{{ route('user.logout') }}"><i class="fas fa-user"></i>logout</a>
-                </div>
-                @else 
-                <div class="sign-box">
-                    <a href="{{ route('login') }}"><i class="fas fa-user"></i>Sign In</a>
-                </div>
+                @auth
+                    <div class="sign-box">
+                        <a href="{{ route('dashboard') }}"><i class="fas fa-user"></i>Dashboard</a>
+                        <a href="{{ route('user.logout') }}"><i class="fas fa-user"></i>logout</a>
+                    </div>
+                @else
+                    <div class="sign-box">
+                        <a href="{{ route('login') }}"><i class="fas fa-user"></i>Sign In</a>
+                    </div>
                 @endauth
 
-                
+
 
 
 
@@ -57,40 +57,23 @@
                                 <li class="current dropdown"><a href="{{ route('index') }}"><span>Home</span></a>
                                     <ul>
                                         <li><a href="{{ route('index') }}">Main Home</a></li>
-                                        <li><a href="index-2.html">Home Modern</a></li>
-                                        <li><a href="index-3.html">Home Map</a></li>
-                                        <li><a href="index-4.html">Home Half Map</a></li>
-                                        <li><a href="index-5.html">Home Agent</a></li>
-                                        <li><a href="index-onepage.html">OnePage Home</a></li>
-                                        <li><a href="index-rtl.html">RTL Home</a></li>
+                                        <li><a href="{{ route('index') }}">RTL Home</a></li>
                                         <li class="dropdown"><a href="{{ route('index') }}">Header Style</a>
-                                            <ul>
-                                                <li><a href="{{ route('index') }}">Header Style 01</a></li>
-                                                <li><a href="index-2.html">Header Style 02</a></li>
-                                                <li><a href="index-3.html">Header Style 03</a></li>
-                                            </ul>
                                         </li>
                                     </ul>
                                 </li>
                                 <li class="dropdown"><a href="{{ route('index') }}"><span>Listing</span></a>
                                     <ul>
-                                        <li><a href="agents-list.html">Agents List</a></li>
-                                        <li><a href="agents-grid.html">Agents Grid</a></li>
-                                        <li><a href="agents-details.html">Agent Details</a></li>
+                                        <li><a href="{{ route('index') }}">Agents List</a></li>
+                                        <li><a href="{{ route('index') }}">Agents Grid</a></li>
+                                        <li><a href="{{ route('index') }}">Agent Details</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown"><a href="{{ route('index') }}"><span>Property</span></a>
                                     <ul>
                                         <li><a href="{{ route('property.index') }}">Property List</a></li>
-                                        <li><a href="property-grid.html">Property Grid</a></li>
-                                        <li><a href="property-list-2.html">Property List Full View</a></li>
-                                        <li><a href="property-grid-2.html">Property Grid Full View</a></li>
-                                        <li><a href="property-list-3.html">Property List Half View</a></li>
-                                        <li><a href="property-grid-3.html">Property Grid Half View</a></li>
-                                        <li><a href="property-details.html">Property Details 01</a></li>
-                                        <li><a href="property-details-2.html">Property Details 02</a></li>
-                                        <li><a href="property-details-3.html">Property Details 03</a></li>
-                                        <li><a href="property-details-4.html">Property Details 04</a></li>
+                                        <li><a href="{{ route('index') }}">Property Grid</a></li>
+
                                     </ul>
                                 </li>
                                 <li class="dropdown"><a href="{{ route('index') }}"><span>Pages</span></a>
@@ -117,14 +100,8 @@
                                                     <li>
                                                         <h4>Pages</h4>
                                                     </li>
-                                                    <li><a href="gallery.html">Our Gallery</a></li>
-                                                    <li><a href="profile.html">My Profile</a></li>
-                                                    <li><a href="signin.html">Sign In</a></li>
-                                                    <li><a href="signup.html">Sign Up</a></li>
-                                                    <li><a href="error.html">404</a></li>
-                                                    <li><a href="agents-list.html">Agents List</a></li>
-                                                    <li><a href="agents-grid.html">Agents Grid</a></li>
-                                                    <li><a href="agents-details.html">Agent Details</a></li>
+                                                    <li><a href="{{ route('index') }}">Our Gallery</a></li>
+
                                                 </ul>
                                             </div>
                                             <div class="col-xl-4 column">
@@ -132,14 +109,8 @@
                                                     <li>
                                                         <h4>Pages</h4>
                                                     </li>
-                                                    <li><a href="blog-1.html">Blog 01</a></li>
-                                                    <li><a href="blog-2.html">Blog 02</a></li>
-                                                    <li><a href="blog-3.html">Blog 03</a></li>
-                                                    <li><a href="blog-details.html">Blog Details</a></li>
-                                                    <li><a href="agency-list.html">Agency List</a></li>
-                                                    <li><a href="agency-grid.html">Agency Grid</a></li>
-                                                    <li><a href="agency-details.html">Agency Details</a></li>
-                                                    <li><a href="contact.html">Contact Us</a></li>
+                                                    <li><a href="{{ route('index') }}">Blog 01</a></li>
+
                                                 </ul>
                                             </div>
                                         </div>
@@ -147,20 +118,20 @@
                                 </li>
                                 <li class="dropdown"><a href="{{ route('index') }}"><span>Agency</span></a>
                                     <ul>
-                                        <li><a href="agency-list.html">Agency List</a></li>
-                                        <li><a href="agency-grid.html">Agency Grid</a></li>
-                                        <li><a href="agency-details.html">Agency Details</a></li>
+                                        <li><a href="{{ route('index') }}">Agency List</a></li>
+                                        <li><a href="{{ route('index') }}">Agency Grid</a></li>
+                                        <li><a href="{{ route('index') }}">Agency Details</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown"><a href="{{ route('index') }}"><span>Blog</span></a>
                                     <ul>
-                                        <li><a href="blog-1.html">Blog 01</a></li>
-                                        <li><a href="blog-2.html">Blog 02</a></li>
-                                        <li><a href="blog-3.html">Blog 03</a></li>
-                                        <li><a href="blog-details.html">Blog Details</a></li>
+                                        <li><a href="{{ route('index') }}">Blog 01</a></li>
+                                        <li><a href="{{ route('index') }}">Blog 02</a></li>
+                                        <li><a href="{{ route('index') }}">Blog 03</a></li>
+                                        <li><a href="{{ route('index') }}">Blog Details</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="contact.html"><span>Contact</span></a></li>
+                                <li><a href="{{ route('index') }}"><span>Contact</span></a></li>
                             </ul>
                         </div>
                     </nav>

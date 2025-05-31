@@ -36,9 +36,17 @@ class IndexController extends Controller
     //PropertyIndex
     public function PropertyIndex()
     {
-        $properties = Property::latest()->limit(6)->get();
+        $properties = Property::latest()->paginate(3);
         
         return view('frontend.property.property_index', compact('properties'));
+    }
+    //PropertyType
+    public function PropertyType($id)
+    {
+        $properties = Property::where('ptype_id', $id)->paginate(3);
+        $property_types = PropertyType::where('id', $id)->first();
+        // dd($property_types.type_name);
+        return view('frontend.property.property_type_index', compact('properties', 'property_types'));
     }
  
 }
