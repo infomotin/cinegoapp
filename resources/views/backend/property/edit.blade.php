@@ -156,11 +156,30 @@
                                                     value="{{ $property->state_code }}">
                                             </div>
                                         </div><!-- Col -->
+                                         @php 
+                                        $states = [
+                                            'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado',
+                                            'Connecticut', 'Delaware', 'District of Columbia', 'Florida', 'Georgia',
+                                            'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky',
+                                            'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota',
+                                            'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire',
+                                            'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota',
+                                            'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina',
+                                            'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington',
+                                            'West Virginia', 'Wisconsin', 'Wyoming'
+                                        ];
+
+@endphp
+
                                         <div class="col-sm-3">
                                             <div class="mb-3">
                                                 <label class="form-label">State Name</label>
-                                                <input type="text" name="state_name" class="form-control"
-                                                    value="{{ $property->state_name }}">
+                                                <select name="state_name" class="form-select" id="state_name">
+                                                    <option value="{{ $property->state_name }}">{{ $property->state_name }}</option>
+                                                    @foreach ($states as $state)
+                                                        <option value="{{ $state }}">{{ $state }}</option>
+                                                    @endforeach
+                                                </select>
                                             </div>
                                         </div><!-- Col -->
                                         <div class="col-sm-3">

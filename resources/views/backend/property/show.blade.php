@@ -56,8 +56,8 @@
                                         <td><code>{{ $property->city }}</code></td>
                                     </tr>
                                     <tr>
-                                        <td>State </td>
-                                        <td><code>{{ "Update Leater " }}</code></td>
+                                        <td>Update </td>
+                                        <td><code>{{ $property->pstate }}</code></td>
                                     </tr>
 
                                     <tr>

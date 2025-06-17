@@ -191,7 +191,7 @@
                                         <div class="col-sm-3">
                                             <div class="mb-3">
                                                 <label class="form-label">State Name</label>
-                                                <select name="state_name" id="state_name">
+                                                <select name="state_name" id="state_name" class="form-select">
                                                     <option value="">Select State</option>
                                                     @foreach ($states as $state)
                                                         <option value="{{ $state }}">{{ $state }}</option>
