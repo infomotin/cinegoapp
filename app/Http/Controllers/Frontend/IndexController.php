@@ -27,6 +27,14 @@ class IndexController extends Controller
 
         return view('frontend.property.property_details', compact('property', 'property_types', 'amenities', 'agents', 'multiImage', 'facilities', 'amenities_id'));
     }
+    //PropertyState
+    public function PropertyState($state)
+    {
+        $properties = Property::where('street_name', $state)->paginate(3);
+
+
+        return view('frontend.property.property_state', compact('properties'));
+    }
     //AgentDetails
     public function AgentDetails($id)
     {

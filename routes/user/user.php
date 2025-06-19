@@ -47,3 +47,5 @@ Route::get('/agent/details/{id}/', [IndexController::class, 'AgentDetails'])->na
 Route::get('/property/index', [IndexController::class, 'PropertyIndex'])->name('property.index');
 //property.type
 Route::get('/property/type/{id}', [IndexController::class, 'PropertyType'])->name('property.type');
+// state.details
+Route::get('/property/state/{state}', [IndexController::class, 'PropertyState'])->name('state.details');
